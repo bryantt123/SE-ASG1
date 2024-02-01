@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-    internal class Program
-    {
-        static void Main(string[] args)
-        {
-        }
-    }
+	public class WaitingList
+	{
+		private string Name { get; set; }
+
+	}
 }

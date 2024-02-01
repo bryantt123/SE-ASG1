@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-    internal class Program
-    {
-        static void Main(string[] args)
-        {
-        }
-    }
+	public class DailySeasonPass : ParkingPass
+	{
+		private double ChargeRate { get; set; }
+		// Other properties and methods
+	}
 }

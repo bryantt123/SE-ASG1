@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-    internal class Program
-    {
-        static void Main(string[] args)
-        {
-        }
-    }
+	public class ParkingLot
+	{
+		private int LotNumber { get; set; }
+		private string LotType { get; set; }
+		// Other properties and methods
+	}
 }
