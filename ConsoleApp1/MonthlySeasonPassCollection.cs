@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-	public class MonthlySeasonPass : ParkingPass
+	public class MonthlySeasonPassCollection : ParkingPass, Subject
 	{
 		private int NumPassLeft { get; set; }
 		private string Status { get; set; }

@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-    internal class ExpiredState
+    public class ExpiredState : PPState
     {
+
     }
 }

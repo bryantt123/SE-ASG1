@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-    internal interface PPState
+    public interface PPState
     {
+        private void park();
+        private void exit();
     }
 }
