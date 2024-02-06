@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 namespace ConsoleApp1
 {
     public interface PPState
-    {
-        private void park();
-        private void exit();
+    {       
+        void park();
+        void exit();
     }
 }
