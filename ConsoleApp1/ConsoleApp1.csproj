@@ -46,14 +46,20 @@
     <Compile Include="Applicants.cs" />
     <Compile Include="Carpark.cs" />
     <Compile Include="DailySeasonPass.cs" />
+    <Compile Include="ExpiredState.cs" />
     <Compile Include="FinancialReport.cs" />
     <Compile Include="GantrySystem.cs" />
-    <Compile Include="MonthlySeasonPass.cs" />
+    <Compile Include="MonthlySeasonPassCollection.cs" />
+    <Compile Include="Observer.cs" />
     <Compile Include="ParkingLot.cs" />
     <Compile Include="ParkingPass.cs" />
     <Compile Include="ParkingRecord.cs" />
+    <Compile Include="PPState.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Subject.cs" />
+    <Compile Include="TerminatedState.cs" />
+    <Compile Include="ValidState.cs" />
     <Compile Include="Vehicle.cs" />
     <Compile Include="WaitingList.cs" />
   </ItemGroup>

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-	public class Applicants
+	public class Applicants : Observer
 	{
 		private string Name { get; set; }
 		private string ID { get; set; }
