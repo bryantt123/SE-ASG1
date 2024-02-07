@@ -41,6 +41,7 @@ namespace ConsoleApp1
                 {
                     
                     //terminate
+                    //For commit comments
                     Console.WriteLine("What is the reason for terminating the season pass?");
 
                     string reason = Console.ReadLine();
