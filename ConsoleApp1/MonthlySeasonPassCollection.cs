@@ -12,8 +12,9 @@ namespace ConsoleApp1
 		private string Status { get; set; }
 		public void RefundUnused()
 		{
-			/* Implementation */
-		}
+            Console.WriteLine("Refund processed for unused full months.");
+            /* Implementation */
+        }
 		// Other properties and methods
 	}
 }

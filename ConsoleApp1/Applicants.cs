@@ -15,7 +15,7 @@ namespace ConsoleApp1
 		private string Password { get; set; }
 		private int MobileNo { get; set; }
 		private DateTime startMonth { get; set; }
-		private DateTime endMonth { get; set; }
+		public DateTime endMonth { get; set; }
 		private string PaymentMode { get; set; }
 		private string LicensePlateNo { get; set; }
 		private int IUNumber { get; set; }

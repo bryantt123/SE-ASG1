@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,6 +12,7 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
+            ParkingPass parkingPass = new ParkingPass();
             while (true)
             {
                 displayMenu();
@@ -36,8 +39,15 @@ namespace ConsoleApp1
                 }
                 else if (option == 4)
                 {
+                    
                     //terminate
+                    Console.WriteLine("What is the reason for terminating the season pass?");
+
+                    string reason = Console.ReadLine();
+                    //TerminatePass(applicants, reason);
+                    Console.WriteLine($"{reason}");
                     Console.WriteLine("Terminated! ");
+                    parkingPass.TerminatePass(reason);
                 }
                 else if (option == 5)
                 {
@@ -72,6 +82,7 @@ namespace ConsoleApp1
                 Console.WriteLine("----------------------------------------------");
             }
 
+            
 
         }
     }
