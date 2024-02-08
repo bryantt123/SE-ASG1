@@ -13,19 +13,21 @@ namespace ConsoleApp1
 	{
 		private bool isParked { get; set; }
 		public bool IsParked { get; set; }
-		public bool IsActive { get; set; }
-		public string passType { get; set; }
-		
+
+        private string passType { get; set; }
+        public string PassType { get; set; }
+	
 		private double ChargeRate { get; set; }
 		private int NumPass { get; set; }
 		
 		private PPState validState;
 		private PPState expiredState;
 		private PPState terminatedState;
+		private PPState pendingApprovalState;
 
 		private PPState state;
 
-        
+		
 
         public void setState(PPState state)
         {
@@ -38,6 +40,7 @@ namespace ConsoleApp1
 			validState = new ValidState(this);
 			expiredState = new ExpiredState(this);
 			terminatedState = new TerminatedState(this);
+            pendingApprovalState = new PendingApprovalState(this);
 
 			state = validState; // or pending approval???
             NumPass = 100;
