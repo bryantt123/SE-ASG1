@@ -11,7 +11,7 @@ namespace ConsoleApp1
 		private int CarparkId { get; set; }
 		private string Description { get; set; }
 		private string Location { get; set; }
-		public List<ParkingLot> ParkingLots { get; set; }
+		//public List<ParkingLot> ParkingLots { get; set; }
 		// Other properties and methods
 	}
 }

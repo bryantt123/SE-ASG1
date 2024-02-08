@@ -13,6 +13,7 @@ namespace ConsoleApp1
         static void Main(string[] args)
         {
             ParkingPass parkingPass = new ParkingPass();
+            parkingPass.passType = "Monthly";
             while (true)
             {
                 displayMenu();
@@ -45,10 +46,46 @@ namespace ConsoleApp1
                     Console.WriteLine("What is the reason for terminating the season pass?");
 
                     string reason = Console.ReadLine();
-                    //TerminatePass(applicants, reason);
-                    Console.WriteLine($"{reason}");
-                    Console.WriteLine("Terminated! ");
-                    parkingPass.TerminatePass(reason);
+                    Console.WriteLine("What type of season pass would you like to terminate? Daily / Monthly? (Case Sensitive, Please Copy Paste) :");
+                    parkingPass.passType = Console.ReadLine();
+                    if (parkingPass.passType == "Daily" || parkingPass.passType == "Monthly")
+                    {
+                        parkingPass.TerminatePass(reason, parkingPass.passType);
+                        Console.WriteLine("parkingPass.TerminatePass(reason) called");
+                        Console.WriteLine($"{parkingPass.passType} season pass Terminated!");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Please enter either 'Daily' or 'Monthly' only.");
+                    }
+
+                    //if (Tpasstype == "Monthly")
+                    //{
+                    //    //TerminatePass(applicants, reason);
+                    //    Console.WriteLine($"{reason}");
+
+                    //    parkingPass.TerminatePass(reason, Tpasstype);
+                    //    Console.WriteLine("parkingPass.TerminatePass(reason) called");
+
+                    //    Console.WriteLine("Monthly season pass Terminated! ");
+                    //}
+
+                    //else if (Tpasstype == "Daily")
+                    //{
+                    //    Console.WriteLine($"{reason}");
+
+                    //    parkingPass.TerminatePass(reason, Tpasstype);
+                    //    Console.WriteLine("parkingPass.TerminatePass(reason) called");
+
+                    //    Console.WriteLine("Daily season pass Terminated! ");
+                    //}
+
+                    //else
+                    //{
+                    //    Console.WriteLine("Please enter either Daily or Monthly only");
+                    //}
+
+
                 }
                 else if (option == 5)
                 {

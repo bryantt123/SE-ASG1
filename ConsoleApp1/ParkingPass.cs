@@ -14,7 +14,7 @@ namespace ConsoleApp1
 		private bool isParked { get; set; }
 		public bool IsParked { get; set; }
 		public bool IsActive { get; set; }
-		public string Type { get; set; }
+		public string passType { get; set; }
 		
 		private double ChargeRate { get; set; }
 		private int NumPass { get; set; }
@@ -25,7 +25,7 @@ namespace ConsoleApp1
 
 		private PPState state;
 
-		
+        
 
         public void setState(PPState state)
         {
@@ -42,6 +42,7 @@ namespace ConsoleApp1
 			state = validState; // or pending approval???
             NumPass = 100;
         }
+
 	
 		public void ApplyPass()
 		{
@@ -53,65 +54,66 @@ namespace ConsoleApp1
 			// Implementation 
 		}
 
+        
         DateTime endMonth = DateTime.Now;
-        public void TerminatePass(string reason)
+        public void TerminatePass(string reason, string passType)
 		{
+            passType = passType.Trim();
+            // Check if the reason or passType is empty or null
+            if (string.IsNullOrWhiteSpace(reason) || string.IsNullOrWhiteSpace(passType))
+            {
+                Console.WriteLine("Termination reason and pass type must be provided. Termination aborted.");
+                return;
+            }
+
+            // Check if the entered pass type is neither "Daily" nor "Monthly"
+            if (passType != "Daily" && passType != "Monthly")
+            {
+                Console.WriteLine("Please enter either 'Daily' or 'Monthly' only. Termination aborted.");
+                return;
+            }
+
             // Check if the parking pass is not active, indicating no active pass to terminate
-            if (!IsActive)
+            if (state != validState)
             {
                 Console.WriteLine("No active season parking pass found. Termination process aborted.");
                 return;
             }
-            if (Type == "Daily")
+
+
+            // Check if the passType argument matches the Type of the ParkingPass
+            if (this.passType == passType)
             {
-				IsActive = false;
-				Console.WriteLine("Daily Season Pass is terminated");
+                IsActive = false;
+                // If the season pass is "Daily"
+                if (passType == "Daily")
+                {
+                    Console.WriteLine("Daily Season Pass is terminated.");
+                    return;
+                }
+                // If the season pass is "Monthly" and there are full months left to refund
+                else if (passType == "Monthly" && endMonth > DateTime.Now)
+                {
+                    double refundAmount = CalculateRefund();
+                    Console.WriteLine($"Monthly season pass terminated. Refund of ${refundAmount} processed.");
+                    NumPass += 1; // Assuming NumPass is the number of passes left, and you increment it since one is now available.
+                    Console.WriteLine($"Number of Monthly Season Pass left is {NumPass}");
+                    Console.WriteLine("There are available Monthly Season Pass now!");
+                    return;
+                }
+                // If the season pass is "Monthly" but there are no full months left to refund
+                else if (passType == "Monthly")
+                {
+                    Console.WriteLine("Monthly season pass terminated without a refund.");
+                    NumPass += 1; // Assuming NumPass is the number of passes left, and you increment it since one is now available.
+                    Console.WriteLine($"Number of Monthly Season Pass left is {NumPass}");
+                    Console.WriteLine("There are available Monthly Season Pass now!");
+                    return;
+                }
+                Console.WriteLine("Season Pass Terminated for reason: " + reason);
+                return;
             }
-
-			if (Type == "Monthly" && endMonth > DateTime.Now) // Checks if there are full months left to refund
-            {
-				double refundAmount = CalculateRefund();
-				//paymentSystem.Refund(refundAmount);
-				IsActive = false;
-				Console.WriteLine($"Monthly season pass terminated. Refund of ${refundAmount} processed.");
-				NumPass += 1;
-			}
-
-			else // If no full months are left, terminate without a refund 
-			{
-				IsActive = false;
-				Console.WriteLine("Monthly season pass terminated");
-			}
-
-   //         else if (Type =="Monthly")
-			//{
-   //             if (Applicants.endMonth > DateTime.Now) 
-   //             {
-			//		double refundAmount = CalculateRefund();
-			//		paymentSystem.Refund(refundAmount);
-			//		IsActive = false;
-   //                 Console.WriteLine($"Monthly season pass terminated. Refund of ${refundAmount} processed.");
-			//		NumPass += 1;
-
-   //                 //Console.WriteLine($"Terminating monthly pass due to: {reason}");
-   //                 //this.setState(terminatedState); // Set the pass state to terminated
-   //                 //MonthlySeasonPassCollecton.RefundUnused(); // Process the refund for any unused full months
-   //                 //NumPass += 1;  
-   //             }
-   //             else // If no full months are left, terminate without a refund 
-   //             {
-			//		IsActive = false;
-			//		Console.WriteLine("Monthly season pass terminated");
-
-
-   //                 //Console.WriteLine("No full months left. Terminating without a refund.");
-   //                 //this.setState(terminatedState);
-   //                 //NumPass += 1;
-   //             }
-   //         }
             
-
-			Console.WriteLine("Season Pass Terminated");
             /* Implementation */
         }
 
