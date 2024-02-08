@@ -22,6 +22,7 @@ namespace ConsoleApp1
 		private PPState validState;
 		private PPState expiredState;
 		private PPState terminatedState;
+		private PPState pendingApprovalState;
 
 		private PPState state;
 
@@ -38,6 +39,7 @@ namespace ConsoleApp1
 			validState = new ValidState(this);
 			expiredState = new ExpiredState(this);
 			terminatedState = new TerminatedState(this);
+            pendingApprovalState = new PendingApprovalState(this);
 
 			state = validState; // or pending approval???
             NumPass = 100;
