@@ -13,9 +13,10 @@ namespace ConsoleApp1
 	{
 		private bool isParked { get; set; }
 		public bool IsParked { get; set; }
-		public bool IsActive { get; set; }
-		public string Type { get; set; }
-		
+
+        private string passType { get; set; }
+        public string PassType { get; set; }
+	
 		private double ChargeRate { get; set; }
 		private int NumPass { get; set; }
 		
@@ -25,8 +26,6 @@ namespace ConsoleApp1
 		private PPState pendingApprovalState;
 
 		private PPState state;
-
-		
 
         public void setState(PPState state)
         {
