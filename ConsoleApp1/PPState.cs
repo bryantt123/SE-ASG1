@@ -10,5 +10,9 @@ namespace ConsoleApp1
     {       
         void park();
         void exit();
+        void applyPass();
+        void renewPass();
+        void transferPass();
+        void terminatePass();
     }
 }

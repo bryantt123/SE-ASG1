@@ -6,26 +6,25 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-    public class ValidState : PPState
+    public class PendingApprovalState : PPState
     {
         private ParkingPass parkingPass;
 
-        public ValidState(ParkingPass pp)
+        public PendingApprovalState(ParkingPass pp)
         {
             parkingPass = pp;
         }
 
         public void park()
         {
-            Console.WriteLine("You have parked.");
+            Console.WriteLine("You cannot park. You are still waiting for approval.");
             parkingPass.IsParked = true;
         }
         public void exit()
         {
-            Console.WriteLine("You have exited.");
+            Console.WriteLine("You cannot exit. You are still waiting for approval.");
             parkingPass.IsParked = false;
         }
-
         public void applyPass()
         {
             //implementation
@@ -42,6 +41,5 @@ namespace ConsoleApp1
         {
             //implementation
         }
-
-    } 
+    }
 }

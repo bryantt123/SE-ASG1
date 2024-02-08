@@ -25,5 +25,21 @@ namespace ConsoleApp1
             Console.WriteLine("You cannot exit. Your pass has been terminated.");
             parkingPass.IsParked = false;
         }
+        public void applyPass()
+        {
+            //implementation
+        }
+        public void renewPass()
+        {
+            //implementation
+        }
+        public void transferPass()
+        {
+            //implementation
+        }
+        public void terminatePass()
+        {
+            //implementation
+        }
     }
 }

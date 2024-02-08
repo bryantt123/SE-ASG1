@@ -12,6 +12,16 @@ namespace ConsoleApp1
 		private DateTime Exit { get; set; }
 		private int ParkingId { get; set; }
 		private double Amount { get; set; }
+		public void purgeRecord()
+		{
+			//implementation
+			Console.WriteLine("Purge record");
+		}
+		public void calculateRevenue()
+		{
+			//implementation
+			Console.WriteLine("Revenue Calculated");
+		}
 		public ParkingPass TransferPass()
 		{
 			// Implementation 
