@@ -52,6 +52,7 @@ namespace ConsoleApp1
                     // Use case step 9: System return payment successful.
                     Console.WriteLine("Payment successfull!");
 
+
                     // Use case step 10: System records new end month
                     p.EndMonth = newMonth;
 

@@ -46,7 +46,6 @@ namespace ConsoleApp1
                 }
                 else if (option == 2) //renew
                 {
-                    Console.WriteLine("test");
                     // Use case step 2: System displays user’s season pass.
                     foreach (ParkingPass pp in applicant.PpList)
                     {
