@@ -17,22 +17,16 @@ namespace ConsoleApp1
 		private int MobileNo { get; set; }
 		private string PaymentMode { get; set; }
 		private List<Vehicle> vehicles { get; set; }
+		public List<Vehicle> Vehicles { get; set; }
         private bool paymentMade { get; set; }
 		public bool PaymentMade { get; set; }
         private List<ParkingPass> ppList { get; set; }
         public List<ParkingPass> PpList { get; set; }
-        public Applicants(Subject pp, string n, string id, string un, string pw, int mn, string pm, string v, string l, int i)
+        public Applicants(Subject pp)
         {
 			this.ppData = pp;
 			ppData.registerObserver(this);
-			Name = n;
-			ID = id;
-			Username = un;
-			Password = pw;
-			MobileNo = mn;
-			PaymentMode = pm;
-			Vehicle vehicle = new Vehicle(v, l, i);
-			vehicles.Add(vehicle);
+
 			// data
 			PpList = new List<ParkingPass>
 			{
@@ -45,6 +39,12 @@ namespace ConsoleApp1
 			// Add more hardcoded data as needed
 			};
 
+			Vehicles = new List<Vehicle>
+			{
+				new Vehicle { VehicleType = "car" ,LicensePlateNo = "ABC1234D", IuNo = 1, ParkingPass = new ParkingPass { PassId = 1, PassType = "Monthly", EndMonth = new DateTime(2024, 1, 21)} },
+				new Vehicle { VehicleType = "motorbike", LicensePlateNo = "BCDE2345F", IuNo= 2},
+				new Vehicle { VehicleType = "car" ,LicensePlateNo = "CDEF3456G", IuNo = 3 }
+			};
 
         }
 

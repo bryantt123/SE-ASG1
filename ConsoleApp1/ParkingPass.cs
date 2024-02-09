@@ -21,7 +21,7 @@ namespace ConsoleApp1
         public string PassType { get; set; }
 		private DateTime startMonth { get; set; }
         public DateTime StartMonth { get; set; }
-        private DateTime etartMonth { get; set; }
+        private DateTime endMonth { get; set; }
         public DateTime EndMonth { get; set; }
  
 		
@@ -46,7 +46,6 @@ namespace ConsoleApp1
             pendingApprovalState = new PendingApprovalState(this);
 
             state = pendingApprovalState;
-            NumPass = 100;
         }
 
         public ParkingPass(string pt, int pId, DateTime sm)
@@ -73,14 +72,14 @@ namespace ConsoleApp1
         private MonthlySeasonPassCollection monthlyPasses;
         public void TerminatePass(string reason, string passType, Applicants applicants)
 		{
-            DateTime applicantEndMonth = applicants.EndMonth;
+            //DateTime applicantEndMonth = applicants.EndMonth;
             //state = validState;
 
-            if (applicantEndMonth  == null)
-            {
-                applicantEndMonth = DateTime.Now;
-                Console.WriteLine($"Applicant end date is {applicantEndMonth}");
-            }
+            //if (applicantEndMonth  == null)
+            //{
+            //    applicantEndMonth = DateTime.Now;
+            //    Console.WriteLine($"Applicant end date is {applicantEndMonth}");
+            //}
             passType = passType.Trim();
             // Check if the reason or passType is empty or null
             if (string.IsNullOrWhiteSpace(reason) || string.IsNullOrWhiteSpace(passType))
@@ -153,23 +152,23 @@ namespace ConsoleApp1
                     return;
                 }
                 // If the season pass is "Monthly" and there are full months left to refund
-                else if (passType == "Monthly" && applicantEndMonth > DateTime.Now)
-                {
-                    double refundAmount = CalculateRefund();
-                    Console.WriteLine($"Monthly season pass terminated. Refund of ${refundAmount} processed.");
-                    NumPass += 1; // Assuming NumPass is the number of passes left, and you increment it since one is now available.
-                    Console.WriteLine($"Number of Monthly Season Pass left is {NumPass}");
-                    Console.WriteLine("There are available Monthly Season Pass now!");
-                    this.monthlyPasses.availablePass();
+                //else if (passType == "Monthly" && applicantEndMonth > DateTime.Now)
+                //{
+                //    double refundAmount = CalculateRefund();
+                //    Console.WriteLine($"Monthly season pass terminated. Refund of ${refundAmount} processed.");
+                //    //NumPass += 1; // Assuming NumPass is the number of passes left, and you increment it since one is now available.
+                //    //Console.WriteLine($"Number of Monthly Season Pass left is {NumPass}");
+                //    Console.WriteLine("There are available Monthly Season Pass now!");
+                //    this.monthlyPasses.availablePass();
 
-                    return;
-                }
+                //    return;
+                //}
                 // If the season pass is "Monthly" but there are no full months left to refund
                 else if (passType == "Monthly")
                 {
                     Console.WriteLine("Monthly season pass terminated without a refund.");
-                    NumPass += 1; // Assuming NumPass is the number of passes left, and you increment it since one is now available.
-                    Console.WriteLine($"Number of Monthly Season Pass left is {NumPass}");
+                    //NumPass += 1; // Assuming NumPass is the number of passes left, and you increment it since one is now available.
+                    //Console.WriteLine($"Number of Monthly Season Pass left is {NumPass}");
                     Console.WriteLine("There are available Monthly Season Pass now!");
                     this.monthlyPasses.availablePass();
                     return;
