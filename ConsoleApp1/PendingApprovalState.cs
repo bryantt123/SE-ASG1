@@ -27,9 +27,10 @@ namespace ConsoleApp1
         {
             //implementation
         }
-        public void renewPass()
+        public void renewPass(ParkingPass p)
         {
             //implementation
+            Console.WriteLine("Season pass has not been approved. Unable to renew Season Parking Pass.");
         }
         public void transferPass()
         {

@@ -7,25 +7,49 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-	class Applicants : Observer
-	{
-		private Subject ppData;
-		private string Name { get; set; }
-		private string ID { get; set; }
-		private string Username { get; set; }
-		private string Password { get; set; }
-		private int MobileNo { get; set; }
-		private string PaymentMode { get; set; }
-		private List<Vehicle> vehicles { get; set; }
-		public List<Vehicle> Vehicles { get; set; }
+    class Applicants : Observer
+    {
+        private Subject ppData;
+        private string name { get; set; }
+
+        public string Name { get; set; }
+        private string ID { get; set; }
+        private string Username { get; set; }
+        private string Password { get; set; }
+        private string mobileNo { get; set; }
+        public string MobileNo { get; set; }
+        private string paymentMode { get; set; }
+        public string PaymentMode { get; set; }
+
+        private DateTime startMonth { get; set; }
+        public DateTime StartMonth { get; set; }
+
+        private DateTime endMonth { get; set; }
+        public DateTime EndMonth { get; set; }
+
+
+        private List<Vehicle> vehicles { get; set; }
+        public List<Vehicle> Vehicles { get; set; }
         private bool paymentMade { get; set; }
-		public bool PaymentMade { get; set; }
+        public bool PaymentMade { get; set; }
         private List<ParkingPass> ppList { get; set; }
         public List<ParkingPass> PpList { get; set; }
+
+        public Applicants() { }
+
+
         public Applicants(Subject pp)
         {
 			this.ppData = pp;
 			ppData.registerObserver(this);
+			
+			ID = id;
+			Username = un;
+			Password = pw;
+			MobileNo = mn;
+			PaymentMode = pm;
+			Vehicle vehicle = new Vehicle(v, l, i);
+			vehicles.Add(vehicle);
 			// data
 			PpList = new List<ParkingPass>
 			{
@@ -46,95 +70,11 @@ namespace ConsoleApp1
 			};
 
         }
-
-		public void Update()
+        public void Update()
 		{
 			Console.WriteLine("There are monthly passes available!");
 		}
 
-        public bool ApplyPass()
-        {
-
-            int passType;
-            Console.WriteLine("[1] Daily\n[2] Monthly");
-
-            Console.Write("Which pass are you applying for? ");
-            passType = Convert.ToInt32(Console.ReadLine());
-
-            if (passType == 1)
-            {
-
-                //Console.WriteLine("Please input the following information:\n - Name\n - Month for application\n - Mobile Number\n - Payment mode\n - License plate number\n - IU number\n - Vehicle type\n");
-
-                ////User provides the system with all the information required
-                //string collatedInfo = Console.ReadLine();
-                //string[] applicationInfo = collatedInfo.Split(',');
-
-                ////Executing payment use case
-                //Console.WriteLine("Redirecting you to payment...");
-                //Console.WriteLine("Payment Successful!");
-
-                //DateTime startMonth = Convert.ToDateTime(applicationInfo[1]);
-                //DailySeasonPass dailySeasonPass = new DailySeasonPass("Daily", 1, startMonth);
-                //dailySeasonPass.setPending();
-
-                Console.Write("Please enter your Name: ");
-
-                Console.Write("Please enter the Month for application: ");
-
-                Console.Write("Please enter your Mobile Number: ");
-                string mobileNo = Console.ReadLine();
-
-
-                Console.Write("Please enter your Payment mode: ");
-
-                Console.Write("License plate number");
-
-                Console.Write("IU number");
-
-                Console.Write("Vehicle Type");
-
-
-
-                Console.WriteLine("Daily Season Pass Object has been created");
-            }
-
-            else if (passType == 2)
-            {
-                MonthlySeasonPassCollection waitingList = MonthlySeasonPassCollection.getInstance();
-
-                if (waitingList.NumPassLeft == 0)
-                {
-                    Console.WriteLine("No Monthly passes left. Sign up for waiting list? [Y/N]");
-                    string signUp = Console.ReadLine().ToLower();
-
-                    if (signUp == "Y")
-                    {
-
-                        waitingList.registerObserver(this);
-
-                        Console.WriteLine("You are now in the waiting list for Monthly passes.");
-                    }
-                    else if (signUp == "N") 
-                    {
-                        Console.WriteLine("You have decided opt out.\nUse case ends.");
-                        
-                    }
-                    return false;
-
-                }
-                else
-                {
-                    Console.WriteLine("Please input the following information:\n - Name\n - Month for application\n - Mobile Number\n - Payment mode\n - License plate number\n - IU number\n - Vehicle type\n");
-                    //User provides the system with all the information required
-                    string collatedInfo = Console.ReadLine();
-                    string[] applicationInfo = collatedInfo.Split(',');
-                }
-                
-            }
-            return true;
-
-        }
     }
 
 }
