@@ -24,7 +24,11 @@ namespace ConsoleApp1
             Applicants applicants = new Applicants();
             //Applicants applicants = new Applicants(PPData);
             parkingPass.PassType = "";
-           
+            List<Applicants> applicantList= new List<Applicants>();
+
+            MonthlySeasonPassCollection subject = new MonthlySeasonPassCollection();
+            Applicants applicant = new Applicants(subject);
+
             while (true)
             {
                 displayMenu();
@@ -40,14 +44,72 @@ namespace ConsoleApp1
                     applicants.ApplyPass();
                     Console.WriteLine("Applied! ");
                 }
-                else if (option == 2)
+                else if (option == 2) //renew
                 {
-                    //renew
+                    Console.WriteLine("test");
+                    // Use case step 2: System displays user’s season pass.
+                    foreach (ParkingPass pp in applicant.PpList)
+                    {
+                        Console.WriteLine("[" + pp.PassId +"] :" + pp.PassType);
+                    }
+
+                    // Use case Step 3: User selects a season pass.
+                    Console.Write("Enter a season pass ID: ");
+                    int passOption = Convert.ToInt32(Console.ReadLine())-1;
+
+                    // Use case Step 4: System verifies season pass type 
+                    ParkingPass p = applicant.PpList[passOption];
+                    string passType = p.PassType;
+                    DateTime month = p.EndMonth;
+                    // daily/vaild monthly: continue
+                    if (passType == "Daily" || (passType == "Monthly" && month <= DateTime.Today))
+                    {
+                        //Use case step 5: System displays new end month.
+                        DateTime newMonth = month.AddMonths(1);
+                        Console.WriteLine("New end month: " + newMonth);
+
+                        // Use case step 6: System prompts for confirmation.
+                        Console.Write("Confirm renewal: [1] Confirm [0] Cancel");
+                        int confirmation = Convert.ToInt32(Console.ReadLine()) ;
+                        // Use case step 7: User confirms renewal.
+                        if (confirmation == 1)
+                        {
+                            // EXECUTE RENEW()
+                            // Use case step 8: System executes Payment use case.
+                            Console.WriteLine("Executing Payment");
+
+                            // Use case step 9: System return payment successful.
+                            Console.WriteLine("Payment successfull!");
+
+                            // Use case step 10: System records new end month
+                            p.EndMonth = newMonth;
+
+                            // Use case step 11: System displays successful renewal.
+
+                            Console.WriteLine("Renewal successful!");
+                            // Use case step 12: Use case ends.
+                        }
+                        else if(confirmation == 0)
+                        {
+                            //break
+                        }
+
+
+                    }
+                    // expired/terminated daily pass
+                    else
+                    {
+                        Console.WriteLine("Unable to renew pass.");
+                    }
+
+
+
+
                     Console.WriteLine("Renewed! ");
                 }
                 else if (option == 3)
                 {
-                    // transfer
+                    
                     Console.WriteLine("Transfered! ");
                 }
                 else if (option == 4)
@@ -170,10 +232,45 @@ namespace ConsoleApp1
             //            Console.WriteLine("No Monthly passes left. Sign up for waiting list? [Y/N]");
             //            string signUp = Console.ReadLine().ToLower();
 
-            //            waitingList.registerObserver(this);
+                        }
+                        if (decision == "N")
+                        {
+                            
+                        }
+                    }
+                }
 
-            //        }
-            //    }
+
+            }
+
+            void transferPass()
+            {
+                /* 
+                    display season passes
+                    choose season pass
+                    display vehicles
+                    choose vehicle/add vehicle
+                    confirm trasnfer
+                    change season pass details
+                    display success
+                    */
+
+                Console.WriteLine("Enter your username registered to your season pass: ");
+                string un = Console.ReadLine();
+                Console.WriteLine("Enter your password: ");
+                string pw = Console.ReadLine();
+                foreach (Applicants applicant in applicantList)
+                {
+                    if (applicant.verifyUser(un, pw) == true)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Error authenticating user!");
+                        return;
+                    }
+                }
 
 
             //}

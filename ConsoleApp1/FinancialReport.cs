@@ -9,8 +9,12 @@ namespace ConsoleApp1
 	class FinancialReport
 	{
 		private double AllVehiclesRevenue { get; set; }
+		
 		private double StaffVehiclesRevenue { get; set; }
+		
 		private double StudentVehiclesRevenue { get; set; }
-		// Other properties and methods
+
+		private List<ParkingRecord> ParkingRecords { get; set; }
+
 	}
 }

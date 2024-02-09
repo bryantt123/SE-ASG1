@@ -12,23 +12,19 @@ namespace ConsoleApp1
 {
 	class ParkingPass
 	{
+        private int passId {  get; set; }
+        public int PassId { get; set; }
 		private bool isParked { get; set; }
 		public bool IsParked { get; set; }
 
         private string passType { get; set; }
         public string PassType { get; set; }
-	
-		private double ChargeRate { get; set; }
-		private int numPass { get; set; }
-
-        public int NumPass { get; set; }
-
-        private int passId { get; set; }
+		private DateTime startMonth { get; set; }
+        public DateTime StartMonth { get; set; }
+        private DateTime etartMonth { get; set; }
+        public DateTime EndMonth { get; set; }
+ 
 		
-        private DateTime startMonth { get; set; }
-
-        private DateTime endMonth { get; set; }
-
 		private PPState validState;
 		private PPState expiredState;
 		private PPState terminatedState;
