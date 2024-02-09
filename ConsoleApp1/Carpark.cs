@@ -9,9 +9,11 @@ namespace ConsoleApp1
 	class Carpark
 	{
 		private int CarparkId { get; set; }
+
 		private string Description { get; set; }
+		
 		private string Location { get; set; }
-		//public List<ParkingLot> ParkingLots { get; set; }
-		// Other properties and methods
+		
+		public List<ParkingRecord> ParkingRecords { get; set; }
 	}
 }
