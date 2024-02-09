@@ -44,15 +44,12 @@ namespace ConsoleApp1
             int confirmation = Convert.ToInt32(Console.ReadLine());
 
             // Use case step 7: User confirms renewal.
-                if (confirmation == 1)
+            if (confirmation == 1)
+            {
+                    
+                p.makePayment();
+                if (p.PaymentMade == true)
                 {
-                    // Use case step 8: System executes Payment use case.
-                    Console.WriteLine("Executing Payment...");
-
-                    // Use case step 9: System return payment successful.
-                    Console.WriteLine("Payment successfull!");
-
-
                     // Use case step 10: System records new end month
                     p.EndMonth = newMonth;
 
@@ -61,6 +58,7 @@ namespace ConsoleApp1
                     Console.WriteLine("Renewal successful!");
                     // Use case step 12: Use case ends.
                     Console.WriteLine("Renewed! ");
+                }
             }
                 else if (confirmation == 0)
                 {

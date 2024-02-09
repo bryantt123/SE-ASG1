@@ -24,9 +24,11 @@ namespace ConsoleApp1
         public DateTime StartMonth { get; set; }
         private DateTime endMonth { get; set; }
         public DateTime EndMonth { get; set; }
- 
-		
-		private PPState validState;
+        private bool paymentMade { get; set; }
+        public bool PaymentMade { get; set; }
+
+
+        private PPState validState;
 		private PPState expiredState;
 		private PPState terminatedState;
 		private PPState pendingApprovalState;
@@ -62,7 +64,12 @@ namespace ConsoleApp1
             isParked = false;
             //endMonth = sm.AddMonths(1);
         }
-
+        public void makePayment()
+        {
+            Console.WriteLine("Executing Payment...");
+            Console.WriteLine("Payment successfull!");
+            PaymentMade = true;
+        }
         public void renewPass()
         {
             currentState.renewPass(this);

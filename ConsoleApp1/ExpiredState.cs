@@ -46,20 +46,19 @@ namespace ConsoleApp1
                 // Use case step 7: User confirms renewal.
                 if (confirmation == 1)
                 {
-                    // Use case step 8: System executes Payment use case.
-                    Console.WriteLine("Executing Payment...");
 
-                    // Use case step 9: System return payment successful.
-                    Console.WriteLine("Payment successfull!");
+                    p.makePayment();
+                    if (p.PaymentMade == true)
+                    {
+                        // Use case step 10: System records new end month
+                        p.EndMonth = newMonth;
 
-                    // Use case step 10: System records new end month
-                    p.EndMonth = newMonth;
+                        // Use case step 11: System displays successful renewal.
 
-                    // Use case step 11: System displays successful renewal.
-
-                    Console.WriteLine("Renewal successful!");
-                    // Use case step 12: Use case ends.
-                    Console.WriteLine("Renewed! ");
+                        Console.WriteLine("Renewal successful!");
+                        // Use case step 12: Use case ends.
+                        Console.WriteLine("Renewed! ");
+                    }
                 }
                 else if (confirmation == 0)
                 {

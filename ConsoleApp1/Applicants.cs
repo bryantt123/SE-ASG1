@@ -18,8 +18,6 @@ namespace ConsoleApp1
 		private string PaymentMode { get; set; }
 		private List<Vehicle> vehicles { get; set; }
 		public List<Vehicle> Vehicles { get; set; }
-        private bool paymentMade { get; set; }
-		public bool PaymentMade { get; set; }
         private List<ParkingPass> ppList { get; set; }
         public List<ParkingPass> PpList { get; set; }
         //     public Applicants(Subject pp, string n, string id, string un, string pw, int mn, string pm, string v, string l, int i)
