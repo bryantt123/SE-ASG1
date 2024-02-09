@@ -21,18 +21,11 @@ namespace ConsoleApp1
 		public bool PaymentMade { get; set; }
         private List<ParkingPass> ppList { get; set; }
         public List<ParkingPass> PpList { get; set; }
-        public Applicants(Subject pp, string n, string id, string un, string pw, int mn, string pm, string v, string l, int i)
+        public Applicants(Subject pp)
         {
 			this.ppData = pp;
 			ppData.registerObserver(this);
-			Name = n;
-			ID = id;
-			Username = un;
-			Password = pw;
-			MobileNo = mn;
-			PaymentMode = pm;
-			Vehicle vehicle = new Vehicle(v, l, i);
-			vehicles.Add(vehicle);
+			
 			// data
 			PpList = new List<ParkingPass>
 			{
@@ -107,6 +100,13 @@ namespace ConsoleApp1
                     }
                     return false;
 
+                }
+                else
+                {
+                    Console.WriteLine("Please input the following information:\n - Name\n - Month for application\n - Mobile Number\n - Payment mode\n - License plate number\n - IU number\n - Vehicle type\n");
+                    //User provides the system with all the information required
+                    string collatedInfo = Console.ReadLine();
+                    string[] applicationInfo = collatedInfo.Split(',');
                 }
                 
             }

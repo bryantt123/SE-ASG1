@@ -21,7 +21,7 @@ namespace ConsoleApp1
         {
             ParkingPass parkingPass = new ParkingPass();
             Subject PPData = new MonthlySeasonPassCollection();
-            Applicants applicants = new Applicants();
+            //Applicants applicants = new Applicants();
             //Applicants applicants = new Applicants(PPData);
             parkingPass.PassType = "";
             List<Applicants> applicantList= new List<Applicants>();
@@ -41,7 +41,7 @@ namespace ConsoleApp1
                 else if (option == 1)
                 {
 
-                    applicants.ApplyPass();
+                    applicant.ApplyPass();
                     Console.WriteLine("Applied! ");
                 }
                 else if (option == 2) //renew
@@ -133,31 +133,31 @@ namespace ConsoleApp1
                         Console.WriteLine("Please enter either 'Daily' or 'Monthly' only.");
                     }
 
-                    if (Tpasstype == "Monthly")
-                    {
-                        //TerminatePass(applicants, reason);
-                        Console.WriteLine($"{reason}");
+                    //if (Tpasstype == "Monthly")
+                    //{
+                    //    //TerminatePass(applicants, reason);
+                    //    Console.WriteLine($"{reason}");
 
-                        parkingPass.TerminatePass(reason, Tpasstype);
-                        Console.WriteLine("parkingPass.TerminatePass(reason) called");
+                    //    parkingPass.TerminatePass(reason, Tpasstype);
+                    //    Console.WriteLine("parkingPass.TerminatePass(reason) called");
 
-                        Console.WriteLine("Monthly season pass Terminated! ");
-                    }
+                    //    Console.WriteLine("Monthly season pass Terminated! ");
+                    //}
 
-                    else if (Tpasstype == "Daily")
-                    {
-                        Console.WriteLine($"{reason}");
+                    //else if (Tpasstype == "Daily")
+                    //{
+                    //    Console.WriteLine($"{reason}");
 
-                        parkingPass.TerminatePass(reason, Tpasstype);
-                        Console.WriteLine("parkingPass.TerminatePass(reason) called");
+                    //    parkingPass.TerminatePass(reason, Tpasstype);
+                    //    Console.WriteLine("parkingPass.TerminatePass(reason) called");
 
-                        Console.WriteLine("Daily season pass Terminated! ");
-                    }
+                    //    Console.WriteLine("Daily season pass Terminated! ");
+                    //}
 
-                    else
-                    {
-                        Console.WriteLine("Please enter either Daily or Monthly only");
-                    }
+                    //else
+                    //{
+                    //    Console.WriteLine("Please enter either Daily or Monthly only");
+                    //}
 
 
                 }
@@ -203,7 +203,7 @@ namespace ConsoleApp1
             //    if (passType == 1)
             //    {
 
-                   
+
             //        Console.WriteLine("Please input the following information:\n - Name\n - Month for application\n - Mobile Number\n - Payment mode\n - License plate number\n - IU number\n - Vehicle type\n");
 
             //        //User provides the system with all the information required
@@ -232,49 +232,49 @@ namespace ConsoleApp1
             //            Console.WriteLine("No Monthly passes left. Sign up for waiting list? [Y/N]");
             //            string signUp = Console.ReadLine().ToLower();
 
-                        }
-                        if (decision == "N")
-                        {
-                            
-                        }
-                    }
-                }
+            //            }
+            //            if (decision == "N")
+            //            {
 
-
-            }
-
-            void transferPass()
-            {
-                /* 
-                    display season passes
-                    choose season pass
-                    display vehicles
-                    choose vehicle/add vehicle
-                    confirm trasnfer
-                    change season pass details
-                    display success
-                    */
-
-                Console.WriteLine("Enter your username registered to your season pass: ");
-                string un = Console.ReadLine();
-                Console.WriteLine("Enter your password: ");
-                string pw = Console.ReadLine();
-                foreach (Applicants applicant in applicantList)
-                {
-                    if (applicant.verifyUser(un, pw) == true)
-                    {
-                        break;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Error authenticating user!");
-                        return;
-                    }
-                }
+            //            }
+            //        }
+            //    }
 
 
             //}
 
+            //            void transferPass()
+            //            {
+            //                /* 
+            //                    display season passes
+            //                    choose season pass
+            //                    display vehicles
+            //                    choose vehicle/add vehicle
+            //                    confirm trasnfer
+            //                    change season pass details
+            //                    display success
+            //                    */
+
+            //                Console.WriteLine("Enter your username registered to your season pass: ");
+            //                string un = Console.ReadLine();
+            //                Console.WriteLine("Enter your password: ");
+            //                string pw = Console.ReadLine();
+            //                foreach (Applicants applicant in applicantList)
+            //                {
+            //                    if (applicant.verifyUser(un, pw) == true)
+            //                    {
+            //                        break;
+            //                    }
+            //                    else
+            //                    {
+            //                        Console.WriteLine("Error authenticating user!");
+            //                        return;
+            //                    }
+            //                }
+
+
         }
+
     }
 }
+
