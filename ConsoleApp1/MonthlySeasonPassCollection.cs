@@ -34,6 +34,7 @@ namespace ConsoleApp1
 		public void availablePass()
 		{
             notifyObservers();
+			Console.WriteLine("Notified");
 		}
 		public void RefundUnused()
 		{
