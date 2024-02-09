@@ -48,10 +48,10 @@ namespace ConsoleApp1
 			{
 				// Expired (daily still can renew)
                 new ParkingPass { PassId = 1, PassType = "Monthly", EndMonth = new DateTime(2024, 1, 21)},
-				new ParkingPass { PassId = 2, PassType = "Weekly", EndMonth = new DateTime(2024, 1, 21)},
+                new ParkingPass { PassId = 2, PassType = "Weekly", EndMonth = new DateTime(2024, 1, 21)},
 				// Valid (both can renew)
 				new ParkingPass { PassId = 3, PassType = "Monthly", EndMonth = new DateTime(2024, 3, 21)},
-				new ParkingPass { PassId = 4, PassType = "Weekly", EndMonth = new DateTime(2024, 3, 21) }
+                new ParkingPass { PassId = 4, PassType = "Weekly", EndMonth = new DateTime(2024, 3, 21) }
 			// Add more hardcoded data as needed
 			};
 
@@ -63,8 +63,7 @@ namespace ConsoleApp1
 			};
 
         }
-
-		public void Update()
+        public void Update()
 		{
 			Console.WriteLine("There are monthly passes available!");
 		}

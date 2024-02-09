@@ -173,59 +173,21 @@ namespace ConsoleApp1
                 }
                 else if (option == 2) //renew
                 {
-                    Console.WriteLine("test");
                     // Use case step 2: System displays user’s season pass.
                     foreach (ParkingPass pp in applicant.PpList)
                     {
-                        Console.WriteLine("[" + pp.PassId +"] :" + pp.PassType);
+                        Console.WriteLine("[" + pp.PassId +"]: " + pp.PassType + "Season Pass");
                     }
 
                     // Use case Step 3: User selects a season pass.
                     Console.Write("Enter a season pass ID: ");
                     int passOption = Convert.ToInt32(Console.ReadLine())-1;
-
-                    // Use case Step 4: System verifies season pass type 
                     ParkingPass p = applicant.PpList[passOption];
-                    string passType = p.PassType;
-                    DateTime month = p.EndMonth;
-                    // daily/vaild monthly: continue
-                    if (passType == "Daily" || (passType == "Monthly" && month <= DateTime.Today))
-                    {
-                        //Use case step 5: System displays new end month.
-                        DateTime newMonth = month.AddMonths(1);
-                        Console.WriteLine("New end month: " + newMonth);
+                    // call renew
+                    p.renewPass();
 
-                        // Use case step 6: System prompts for confirmation.
-                        Console.Write("Confirm renewal: [1] Confirm [0] Cancel");
-                        int confirmation = Convert.ToInt32(Console.ReadLine()) ;
-                        // Use case step 7: User confirms renewal.
-                        if (confirmation == 1)
-                        {
-                            // EXECUTE RENEW()
-                            // Use case step 8: System executes Payment use case.
-                            Console.WriteLine("Executing Payment");
-
-                            // Use case step 9: System return payment successful.
-                            Console.WriteLine("Payment successfull!");
-
-                            // Use case step 10: System records new end month
-                            p.EndMonth = newMonth;
-
-                            // Use case step 11: System displays successful renewal.
-
-                            Console.WriteLine("Renewal successful!");
-                            // Use case step 12: Use case ends.
-                        }
-                        else if(confirmation == 0)
-                        {
-                            //break
-                        }
-                    }
-                    // expired/terminated daily pass
-                    else
-                    {
-                        Console.WriteLine("Unable to renew pass.");
-                    }
+                    
+                    
                 }
                 else if (option == 3) //transfer
                 {
@@ -331,7 +293,7 @@ namespace ConsoleApp1
                 }
                 else if (option == 4) //terminate
                 {
-                    
+
                     //terminate
                     //For commit comments
                     Console.WriteLine("What is the reason for terminating the season pass?");
@@ -350,31 +312,31 @@ namespace ConsoleApp1
                         Console.WriteLine("Please enter either 'Daily' or 'Monthly' only.");
                     }
 
-                    //if (Tpasstype == "Monthly")
-                    //{
-                    //    //TerminatePass(applicants, reason);
-                    //    Console.WriteLine($"{reason}");
+                    if (Tpasstype == "Monthly")
+                    {
+                        //TerminatePass(applicants, reason);
+                        Console.WriteLine($"{reason}");
 
-                    //    parkingPass.TerminatePass(reason, Tpasstype);
-                    //    Console.WriteLine("parkingPass.TerminatePass(reason) called");
+                        parkingPass.TerminatePass(reason, Tpasstype);
+                        Console.WriteLine("parkingPass.TerminatePass(reason) called");
 
-                    //    Console.WriteLine("Monthly season pass Terminated! ");
-                    //}
+                        Console.WriteLine("Monthly season pass Terminated! ");
+                    }
 
-                    //else if (Tpasstype == "Daily")
-                    //{
-                    //    Console.WriteLine($"{reason}");
+                    else if (Tpasstype == "Daily")
+                    {
+                        Console.WriteLine($"{reason}");
 
-                    //    parkingPass.TerminatePass(reason, Tpasstype);
-                    //    Console.WriteLine("parkingPass.TerminatePass(reason) called");
+                        parkingPass.TerminatePass(reason, Tpasstype);
+                        Console.WriteLine("parkingPass.TerminatePass(reason) called");
 
-                    //    Console.WriteLine("Daily season pass Terminated! ");
-                    //}
+                        Console.WriteLine("Daily season pass Terminated! ");
+                    }
 
-                    //else
-                    //{
-                    //    Console.WriteLine("Please enter either Daily or Monthly only");
-                    //}
+                    else
+                    {
+                        Console.WriteLine("Please enter either Daily or Monthly only");
+                    }
 
 
                 }
