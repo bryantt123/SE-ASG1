@@ -12,9 +12,6 @@ namespace ConsoleApp1
 		private int numPassLeft { get; set; } = 5;
 		public int NumPassLeft { get; set; } = 5;
 
-		private int numPassAvail { get; set; } = 50;
-		public int NumPassAvail { get; set; } = 50;
-
 		// singleton
         private static MonthlySeasonPassCollection uniqueInstance = null;
 
@@ -40,14 +37,12 @@ namespace ConsoleApp1
         public void registerObserver(Observer o)
 		{
 			observers.Add(o);
-			Console.WriteLine("Observer has been registered");
 		}
 
 		// remove from waiting list
 		public void removeObserver(Observer o)
 		{
 			observers.Remove(o);
-			Console.WriteLine("Observer has been removed.");
 		}
 
 		public void notifyObservers()
@@ -55,17 +50,10 @@ namespace ConsoleApp1
             foreach (Observer o in observers)
             {
                 o.Update();
-				Console.WriteLine("Observer has been notified.");
             }
         }
 
-        public void passesChanged()
-        {
-            numPassLeft = numPassAvail - observers.Count;
-            notifyObservers();
-        }
-
-        public void availablePass()
+		public void availablePass()
 		{
             notifyObservers();
 			Console.WriteLine("Notified");

@@ -38,42 +38,9 @@ namespace ConsoleApp1
                 {
                     break;
                 }
-               
-                else if (option == 1) // apply
+                else if (option == 1)
                 {
-                    int passType;
-                    Console.WriteLine("[1] Daily\n[2] Monthly");
 
-                    Console.Write("Which pass are you applying for? ");
-                    passType = Convert.ToInt32(Console.ReadLine());
-
-                    //user selects to apply for daily
-                    if (passType == 1)
-                    {
-
-                        Console.WriteLine("Please input the following information:\n - Name\n " +
-                   "- Month Number for Application \n - Mobile Number\n - Payment mode (cash or card)\n - Vehicle type (car or bike)\n - License plate number\n -" +
-                   " IU number\n  Each field should be separated by commas");
-
-                        // User provides the system with all the information required
-                        string collatedInfo = Console.ReadLine();
-                        string[] applicationInfo = collatedInfo.Split(',');
-
-                        // Executing payment use case
-                        Console.WriteLine("Redirecting you to payment...");
-                        Console.WriteLine("Payment Successful!");
-
-                        // Convert the month number to a DateTime object
-                        int monthNumber = Convert.ToInt32(applicationInfo[1]);
-                        DateTime startMonth = new DateTime(DateTime.Now.Year, monthNumber, 1);
-
-                        // Populate vehicle in applicants
-                        applicant.Vehicles.Add(new Vehicle
-                        {
-                            VehicleType = applicationInfo[4],
-                            LicensePlateNo = applicationInfo[5],
-                            IuNo = Convert.ToInt32(applicationInfo[6])
-                        });
                     applicant.ApplyPass();
                     Console.WriteLine("Applied! ");
                 }
@@ -86,36 +53,21 @@ namespace ConsoleApp1
                         Console.WriteLine("[" + pp.PassId + "] :" + pp.PassType);
                     }
 
-                        // Populate the rest of the details in applicants
-                        applicantList.Add(new Applicants
-                        {
-                            Name = applicationInfo[0],
-                            StartMonth = startMonth,
-                            MobileNo = applicationInfo[2],
-                            PaymentMode = applicationInfo[3]
-                        });
                     // Use case Step 3: User selects a season pass.
                     Console.Write("Enter a season pass ID: ");
                     int passOption = Convert.ToInt32(Console.ReadLine()) - 1;
 
-                        // Create a DailySeasonPass object
-                        //setting state to pending 
-                        foreach (Applicants a in applicantList)
-                        {
-                            if (a.Name == applicationInfo[0])
-                            {
-                                //a.PpList.Add(new ParkingPass { PassId = 5, PassType = "Monthly", EndMonth = (startMonth.AddMonths(1)) });
-                                //a.PpList[0].setPending();
-                                break;
-                            }
-                        }
-                        Console.WriteLine("Application Successful!");
-
-                    }
-                    //user selects to apply for monthly
-                    else if (passType == 2)
+                    // Use case Step 4: System verifies season pass type 
+                    ParkingPass p = applicant.PpList[passOption];
+                    string passType = p.PassType;
+                    DateTime month = p.EndMonth;
+                    // daily/vaild monthly: continue
+                    if (passType == "Daily" || (passType == "Monthly" && month <= DateTime.Today))
                     {
-                        MonthlySeasonPassCollection waitingList = MonthlySeasonPassCollection.getInstance();
+                        //Use case step 5: System displays new end month.
+                        DateTime newMonth = month.AddMonths(1);
+                        Console.WriteLine("New end month: " + newMonth);
+
                         // Use case step 6: System prompts for confirmation.
                         Console.Write("Confirm renewal: [1] Confirm [0] Cancel");
                         int confirmation = Convert.ToInt32(Console.ReadLine());
@@ -126,75 +78,14 @@ namespace ConsoleApp1
                             // Use case step 8: System executes Payment use case.
                             Console.WriteLine("Executing Payment");
 
-                        if (waitingList.NumPassLeft == 0)
-                        {
-                            Console.WriteLine("No Monthly passes left. Sign up for waiting list? [Y/N]");
-                            string signUp = Console.ReadLine().ToLower();
+                            // Use case step 9: System return payment successful.
+                            Console.WriteLine("Payment successfull!");
 
-                            if (signUp == "Y")
-                            {
+                            // Use case step 10: System records new end month
+                            p.EndMonth = newMonth;
 
-                                waitingList.registerObserver(applicant);
-                                Console.WriteLine("You are now in the waiting list for Monthly passes.");
+                            // Use case step 11: System displays successful renewal.
 
-                            }
-                            else if (signUp == "N")
-                            {
-                                Console.WriteLine("You have decided opt out.\nUse case ends.");
-
-                            }
-                        }
-                        else
-                        {
-                            Console.WriteLine("Please input the following information:\n - Name\n " +
-                      "- Month Number for Application \n - Mobile Number\n - Payment mode (cash or card)\n - Vehicle type (car or bike)\n - License plate number\n -" +
-                      " IU number\n  Each field should be separated by commas");
-
-                            //user provides the system with all the information required
-                            string collatedInfo = Console.ReadLine();
-                            string[] applicationInfo = collatedInfo.Split(',');
-
-                            //executing payment use case
-                            Console.WriteLine("Redirecting you to payment...");
-                            Console.WriteLine("Payment Successful!");
-
-                            //convert the month number to a DateTime object
-                            int monthNumber = Convert.ToInt32(applicationInfo[1]);
-                            DateTime startMonth = new DateTime(DateTime.Now.Year, monthNumber, 1);
-
-                            //populate vehicle in applicants
-                            applicant.Vehicles.Add(new Vehicle
-                            {
-                                VehicleType = applicationInfo[4],
-                                LicensePlateNo = applicationInfo[5],
-                                IuNo = Convert.ToInt32(applicationInfo[6])
-                            });
-
-                            //populate the rest of the details in applicants
-                            applicantList.Add(new Applicants
-                            {
-                                Name = applicationInfo[0],
-                                StartMonth = startMonth,
-                                MobileNo = applicationInfo[2],
-                                PaymentMode = applicationInfo[3]
-                            });
-
-                            
-                            //setting state to pending 
-                            foreach (Applicants a in applicantList)
-                            {
-                                if (a.Name == applicationInfo[0])
-                                {
-                                    //a.PpList.Add(new ParkingPass { PassId = 5, PassType = "Monthly", EndMonth = (startMonth.AddMonths(1)) } );
-                                    //a.PpList[0].setPending();
-                                    break;
-                                }
-                            }                           
-                            Console.WriteLine("Application Successful!");                            
-                        }
-                    }
-                }
-                else if (option == 2) //renew
                             Console.WriteLine("Renewal successful!");
                             // Use case step 12: Use case ends.
                         }
@@ -210,24 +101,6 @@ namespace ConsoleApp1
                     }
                 }
                 else if (option == 3)
-                {
-                    // Use case step 2: System displays user’s season pass.
-                    foreach (ParkingPass pp in applicant.PpList)
-                    {
-                        Console.WriteLine("[" + pp.PassId +"]: " + pp.PassType + "Season Pass");
-                    }
-
-                    // Use case Step 3: User selects a season pass.
-                    Console.Write("Enter a season pass ID: ");
-                    int passOption = Convert.ToInt32(Console.ReadLine())-1;
-                    ParkingPass p = applicant.PpList[passOption];
-                    // call renew
-                    p.renewPass();
-
-                    
-                    
-                }
-                else if (option == 3) //transfer
                 {
                     /* 
                     display season passes
@@ -329,12 +202,8 @@ namespace ConsoleApp1
                         Console.WriteLine("Confirmation cancelled, transfer cancelled.");
                     }
                 }
-                else if (option == 4) //terminate
+                else if (option == 4)
                 {
-
-                    //terminate
-                    //For commit comments
-                    Console.WriteLine("What is the reason for terminating the season pass?");
                     foreach (ParkingPass pp in applicant.PpList)
                     {
                         Console.WriteLine("[" + pp.PassId + "] :" + pp.PassType);
@@ -358,34 +227,6 @@ namespace ConsoleApp1
                     {
                         Console.WriteLine("Please enter either 'Daily' or 'Monthly' only.");
                     }
-
-                    if (Tpasstype == "Monthly")
-                    {
-                        //TerminatePass(applicants, reason);
-                        Console.WriteLine($"{reason}");
-
-                        parkingPass.TerminatePass(reason, Tpasstype);
-                        Console.WriteLine("parkingPass.TerminatePass(reason) called");
-
-                        Console.WriteLine("Monthly season pass Terminated! ");
-                    }
-
-                    else if (Tpasstype == "Daily")
-                    {
-                        Console.WriteLine($"{reason}");
-
-                        parkingPass.TerminatePass(reason, Tpasstype);
-                        Console.WriteLine("parkingPass.TerminatePass(reason) called");
-
-                        Console.WriteLine("Daily season pass Terminated! ");
-                    }
-
-                    else
-                    {
-                        Console.WriteLine("Please enter either Daily or Monthly only");
-                    }
-
-
                 }
                 else if (option == 5)
                 {
@@ -416,7 +257,6 @@ namespace ConsoleApp1
                 Console.WriteLine("[0] Exit");
                 Console.WriteLine("----------------------------------------------");
             }
-
         }
     }
 }

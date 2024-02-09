@@ -12,7 +12,6 @@ namespace ConsoleApp1
 {
 	class ParkingPass
 	{
-        private PPState currentState;
         private int passId {  get; set; }
         public int PassId { get; set; }
 		private bool isParked { get; set; }
@@ -24,11 +23,9 @@ namespace ConsoleApp1
         public DateTime StartMonth { get; set; }
         private DateTime endMonth { get; set; }
         public DateTime EndMonth { get; set; }
-        private bool paymentMade { get; set; }
-        public bool PaymentMade { get; set; }
-
-
-        private PPState validState;
+ 
+		
+		private PPState validState;
 		private PPState expiredState;
 		private PPState terminatedState;
 		private PPState pendingApprovalState;
@@ -48,9 +45,7 @@ namespace ConsoleApp1
 			terminatedState = new TerminatedState(this);
             pendingApprovalState = new PendingApprovalState(this);
 
-            // can change state to test the diff states
             state = pendingApprovalState;
-            currentState = pendingApprovalState;
             //NumPass = 100;
         }
 
@@ -64,45 +59,14 @@ namespace ConsoleApp1
             isParked = false;
             //endMonth = sm.AddMonths(1);
         }
-        public void makePayment()
-        {
-            Console.WriteLine("Executing Payment...");
-            Console.WriteLine("Payment successfull!");
-            PaymentMade = true;
-        }
-        public void renewPass()
-        {
-            currentState.renewPass(this);
-        }
 
 
-        DateTime endMonth = DateTime.Now;
-        Applicants applicants = new Applicants();
-        private MonthlySeasonPassCollection monthlyPasses;
-        public void TerminatePass(string reason, string passType, Applicants applicants)
-        {
-            DateTime applicantEndMonth = applicants.EndMonth;
-            state = validState;
 
-            if (applicantEndMonth == null)
-            {
-                applicantEndMonth = DateTime.Now;
-                Console.WriteLine($"Applicant end date is {applicantEndMonth}");
-            }
-            passType = passType.Trim();
-            // Check if the reason or passType is empty or null
-            if (string.IsNullOrWhiteSpace(reason) || string.IsNullOrWhiteSpace(passType))
-            {
-                Console.WriteLine("Termination reason and pass type must be provided. Termination aborted.");
-                return;
-            }
+        public void RenewPass()
+		{
+			// Implementation 
+		}
 
-            // Check if the entered pass type is neither "Daily" nor "Monthly"
-            if (passType != "Daily" && passType != "Monthly")
-            {
-                Console.WriteLine("Please enter either 'Daily' or 'Monthly' only. Termination aborted.");
-                return;
-            }
 
 
         public void TerminatePass(string reason, string passType, Applicants applicants)
@@ -131,14 +95,6 @@ namespace ConsoleApp1
                     Console.WriteLine("Your Daily Season Pass has expired");
                     Console.WriteLine("Please choose if you would like to renew or terminate your season pass");
 
-                    int option = Convert.ToInt32(Console.ReadLine());
-                    if (option == 0)
-                    {
-                        return;
-                    }
-                    else if (option == 1) //Renew
-                    {
-                        /* Method to call renew */
 
                     Console.WriteLine("---------------------Menu---------------------");
                     Console.WriteLine("[1] Renew Daily Season Pass");
@@ -204,24 +160,24 @@ namespace ConsoleApp1
 
 
 
-        private double CalculateRefund()
-        {
-            /* Implementation */
-            Console.WriteLine("Refunded");
-            double refundAmount = 0;
-            return refundAmount;
-        }
+		private double CalculateRefund()
+		{
+			/* Implementation */
+			Console.WriteLine("Refunded");
+			double refundAmount = 0;
+			return refundAmount;
+		}
 
-        public class PaymentSystem
-        {
-            public void Refund(double amount)
-            {
-                /* Implementation */
-                Console.WriteLine($"Refund {amount}");
-            }
-        }
+		public class PaymentSystem
+		{
+			public void Refund(double amount)
+			{
+				/* Implementation */
+				Console.WriteLine($"Refund {amount}");
+			}
+		}
 
-    }
+	}
 
 	
 }
