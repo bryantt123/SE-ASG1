@@ -19,8 +19,16 @@ namespace ConsoleApp1
         public string PassType { get; set; }
 	
 		private double ChargeRate { get; set; }
-		private int NumPass { get; set; }
+		private int numPass { get; set; }
+
+        public int NumPass { get; set; }
+
+        private int passId { get; set; }
 		
+        private DateTime startMonth { get; set; }
+
+        private DateTime endMonth { get; set; }
+
 		private PPState validState;
 		private PPState expiredState;
 		private PPState terminatedState;
@@ -28,13 +36,11 @@ namespace ConsoleApp1
 
 		private PPState state;
 
-		
-
+	
         public void setState(PPState state)
         {
             this.state = state;
-        }
-		
+        }		
 
         public ParkingPass()
 		{	
@@ -47,18 +53,20 @@ namespace ConsoleApp1
             NumPass = 100;
         }
 
-        public ParkingPass(MonthlySeasonPassCollection monthlyPasses)
+        public ParkingPass(string pt, int pId, DateTime sm)
         {
-            this.monthlyPasses = monthlyPasses;
+            //this.monthlyPasses = monthlyPasses;
+
+            PassType = pt;
+            passId = pId;
+            startMonth = sm;
+            isParked = false;
+            endMonth = sm.AddMonths(1);
         }
 
-	
-		public void ApplyPass()
-		{
-			// Implementation
-		}
 
-		public void RenewPass()
+
+        public void RenewPass()
 		{
 			// Implementation 
 		}

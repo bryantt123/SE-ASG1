@@ -1,10 +1,17 @@
 ﻿using Microsoft.Win32;
 using System;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
+using System.Xml.Linq;
+using System.Management.Instrumentation;
 
 namespace ConsoleApp1
 {
@@ -16,6 +23,8 @@ namespace ConsoleApp1
             Subject PPData = new MonthlySeasonPassCollection();
             Applicants applicants = new Applicants(PPData);
             parkingPass.PassType = "";
+            MonthlySeasonPassCollection monthlyPassCollection = new MonthlySeasonPassCollection();
+
             while (true)
             {
                 displayMenu();
@@ -27,7 +36,8 @@ namespace ConsoleApp1
                 }
                 else if (option == 1)
                 {
-                    //apply season pass
+
+                    // ApplyPass(observers);
                     Console.WriteLine("Applied! ");
                 }
                 else if (option == 2)
@@ -106,9 +116,6 @@ namespace ConsoleApp1
             }
 
 
-
-
-
             void displayMenu()
             {
                 Console.WriteLine("---------------------Menu---------------------");
@@ -122,7 +129,56 @@ namespace ConsoleApp1
                 Console.WriteLine("----------------------------------------------");
             }
 
-            
+            void ApplyPass(List<Observer> observers)
+            {
+
+                Console.WriteLine("Are you applying for Monthly or Daily season parking pass? ");
+                string passType = Console.ReadLine();
+
+                if (passType == "Daily")
+                {
+                    
+                    Console.WriteLine("Please input the following information:\n - Name\n - Month for application\n - Mobile Number\n - Payment mode\n - License plate number\n - IU number\n - Vehicle type\n(Separated by commas)");
+
+                    //User provides the system with all the information required
+                    string collatedInfo = Console.ReadLine();
+                    string[] applicationInfo = collatedInfo.Split(',');
+
+                    //Executing payment use case
+                    Console.WriteLine("Redirecting you to payment...");
+                    Console.WriteLine("Payment Successful!");
+
+                    DateTime startMonth = Convert.ToDateTime(applicationInfo[1]);
+                    DailySeasonPass dailySeasonPass = new DailySeasonPass("daily", 1, startMonth);
+
+                    
+                    
+
+                }
+
+                else if (passType == "Monthly")
+                {
+                    if (NumPassLeft > 0)
+                    {
+                        
+                    }
+                    else if (NumPassLeft == 0)
+                    {
+                        Console.WriteLine("There are no Monthly passes left! Go to waiting list? [Y/N]");
+                        string decision = Console.ReadLine();
+                        if (decision == "Y")
+                        {
+
+                        }
+                        if (decision == "N")
+                        {
+                            
+                        }
+                    }
+                }
+
+
+            }
 
         }
     }
