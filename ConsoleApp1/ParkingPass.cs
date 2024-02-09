@@ -18,7 +18,6 @@ namespace ConsoleApp1
         private string passType { get; set; }
         public string PassType { get; set; }
 	
-		private double ChargeRate { get; set; }
 		private int NumPass { get; set; }
 		
 		private PPState validState;
