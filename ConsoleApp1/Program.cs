@@ -97,20 +97,20 @@ namespace ConsoleApp1
                     //    }
 
 
-                  //  }
-                            Console.WriteLine("Renewal successful!");
-                            // Use case step 12: Use case ends.
-                        }
-                        else if(confirmation == 0)
-                        {
-                            //break
-                        }
-                    }
-                    // expired/terminated daily pass
-                    else
-                    {
-                        Console.WriteLine("Unable to renew pass.");
-                    }
+                  ////  }
+                  //          Console.WriteLine("Renewal successful!");
+                  //          // Use case step 12: Use case ends.
+                  //      }
+                  //      else if(confirmation == 0)
+                  //      {
+                  //          //break
+                  //      }
+                    
+                  //  // expired/terminated daily pass
+                  //  else
+                  //  {
+                  //      Console.WriteLine("Unable to renew pass.");
+                    
                 }
                 else if (option == 3)
                 {
