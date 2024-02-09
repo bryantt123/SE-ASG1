@@ -17,6 +17,7 @@ namespace ConsoleApp1
 		private int MobileNo { get; set; }
 		private string PaymentMode { get; set; }
 		private List<Vehicle> vehicles { get; set; }
+		public List<Vehicle> Vehicles { get; set; }
         private bool paymentMade { get; set; }
 		public bool PaymentMade { get; set; }
         private List<ParkingPass> ppList { get; set; }
@@ -64,6 +65,12 @@ namespace ConsoleApp1
 			// Add more hardcoded data as needed
 			};
 
+			Vehicles = new List<Vehicle>
+			{
+				new Vehicle { VehicleType = "car" ,LicensePlateNo = "ABC1234D", IuNo = 1, ParkingPass = new ParkingPass { PassId = 1, PassType = "Monthly", EndMonth = new DateTime(2024, 1, 21)} },
+				new Vehicle { VehicleType = "motorbike", LicensePlateNo = "BCDE2345F", IuNo= 2},
+				new Vehicle { VehicleType = "car" ,LicensePlateNo = "CDEF3456G", IuNo = 3 }
+			};
 
         }
         public void Update()
