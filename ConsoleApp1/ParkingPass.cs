@@ -12,6 +12,7 @@ namespace ConsoleApp1
 {
 	class ParkingPass
 	{
+        private PPState currentState;
         private int passId {  get; set; }
         public int PassId { get; set; }
 		private bool isParked { get; set; }
@@ -21,7 +22,7 @@ namespace ConsoleApp1
         public string PassType { get; set; }
 		private DateTime startMonth { get; set; }
         public DateTime StartMonth { get; set; }
-        private DateTime etartMonth { get; set; }
+        private DateTime endMonth { get; set; }
         public DateTime EndMonth { get; set; }
  
 		
@@ -45,8 +46,10 @@ namespace ConsoleApp1
 			terminatedState = new TerminatedState(this);
             pendingApprovalState = new PendingApprovalState(this);
 
+            // can change state to test the diff states
             state = pendingApprovalState;
-            NumPass = 100;
+            currentState = pendingApprovalState;
+            //NumPass = 100;
         }
 
         public ParkingPass(string pt, int pId, DateTime sm)
@@ -57,26 +60,23 @@ namespace ConsoleApp1
             passId = pId;
             startMonth = sm;
             isParked = false;
-            endMonth = sm.AddMonths(1);
+            //endMonth = sm.AddMonths(1);
         }
 
+        public void renewPass()
+        {
+            currentState.renewPass(this);
+        }
 
-
-        public void RenewPass()
-		{
-			// Implementation 
-		}
-
-
-        //DateTime endMonth = DateTime.Now;
-        //Applicants applicants = new Applicants();
+        DateTime endMonth = DateTime.Now;
+        Applicants applicants = new Applicants();
         private MonthlySeasonPassCollection monthlyPasses;
         public void TerminatePass(string reason, string passType, Applicants applicants)
-		{
+        {
             DateTime applicantEndMonth = applicants.EndMonth;
             //state = validState;
 
-            if (applicantEndMonth  == null)
+            if (applicantEndMonth == null)
             {
                 applicantEndMonth = DateTime.Now;
                 Console.WriteLine($"Applicant end date is {applicantEndMonth}");
@@ -137,7 +137,7 @@ namespace ConsoleApp1
                     Console.WriteLine("No active season parking pass found. Termination process aborted.");
                     return;
                 }
-                
+
                 return;
             }
 
@@ -177,37 +177,37 @@ namespace ConsoleApp1
                 Console.WriteLine("Season Pass Terminated for reason: " + reason);
                 return;
             }
-            
+
             /* Implementation */
         }
 
-		
-		public void TransferPass()
-		{
-			/* Implementation */
-		}
-		// Other properties and methods
+
+        public void TransferPass()
+        {
+            /* Implementation */
+        }
+        // Other properties and methods
 
 
 
-		private double CalculateRefund()
-		{
-			/* Implementation */
-			Console.WriteLine("Refunded");
-			double refundAmount = 0;
-			return refundAmount;
-		}
+        private double CalculateRefund()
+        {
+            /* Implementation */
+            Console.WriteLine("Refunded");
+            double refundAmount = 0;
+            return refundAmount;
+        }
 
-		public class PaymentSystem
-		{
-			public void Refund(double amount)
-			{
-				/* Implementation */
-				Console.WriteLine($"Refund {amount}");
-			}
-		}
+        public class PaymentSystem
+        {
+            public void Refund(double amount)
+            {
+                /* Implementation */
+                Console.WriteLine($"Refund {amount}");
+            }
+        }
 
-	}
+    }
 
 	
 }

@@ -21,34 +21,52 @@ namespace ConsoleApp1
 		public bool PaymentMade { get; set; }
         private List<ParkingPass> ppList { get; set; }
         public List<ParkingPass> PpList { get; set; }
-        public Applicants(Subject pp, string n, string id, string un, string pw, int mn, string pm, string v, string l, int i)
+        //     public Applicants(Subject pp, string n, string id, string un, string pw, int mn, string pm, string v, string l, int i)
+        //     {
+        //this.ppData = pp;
+        //ppData.registerObserver(this);
+        //Name = n;
+        //ID = id;
+        //Username = un;
+        //Password = pw;
+        //MobileNo = mn;
+        //PaymentMode = pm;
+        //Vehicle vehicle = new Vehicle(v, l, i);
+        //vehicles.Add(vehicle);
+        //// data
+        //PpList = new List<ParkingPass>
+        //{
+        //	// Expired (daily still can renew)
+        //             new ParkingPass { PassId = 1, PassType = "Monthly", EndMonth = new DateTime(2024, 1, 21)},
+        //	new ParkingPass { PassId = 2, PassType = "Weekly", EndMonth = new DateTime(2024, 1, 21)},
+        //	// Valid (both can renew)
+        //	new ParkingPass { PassId = 3, PassType = "Monthly", EndMonth = new DateTime(2024, 3, 21)},
+        //	new ParkingPass { PassId = 4, PassType = "Weekly", EndMonth = new DateTime(2024, 3, 21) }
+        //// Add more hardcoded data as needed
+        //};
+
+
+        //     }
+
+        public Applicants(Subject pp)
         {
-			this.ppData = pp;
-			ppData.registerObserver(this);
-			Name = n;
-			ID = id;
-			Username = un;
-			Password = pw;
-			MobileNo = mn;
-			PaymentMode = pm;
-			Vehicle vehicle = new Vehicle(v, l, i);
-			vehicles.Add(vehicle);
-			// data
-			PpList = new List<ParkingPass>
-			{
+            this.ppData = pp;
+            ppData.registerObserver(this);
+            // data
+            PpList = new List<ParkingPass>
+            {
 				// Expired (daily still can renew)
                 new ParkingPass { PassId = 1, PassType = "Monthly", EndMonth = new DateTime(2024, 1, 21)},
-				new ParkingPass { PassId = 2, PassType = "Weekly", EndMonth = new DateTime(2024, 1, 21)},
+                new ParkingPass { PassId = 2, PassType = "Weekly", EndMonth = new DateTime(2024, 1, 21)},
 				// Valid (both can renew)
 				new ParkingPass { PassId = 3, PassType = "Monthly", EndMonth = new DateTime(2024, 3, 21)},
-				new ParkingPass { PassId = 4, PassType = "Weekly", EndMonth = new DateTime(2024, 3, 21) }
+                new ParkingPass { PassId = 4, PassType = "Weekly", EndMonth = new DateTime(2024, 3, 21) }
 			// Add more hardcoded data as needed
 			};
 
 
         }
-
-		public void Update()
+        public void Update()
 		{
 			Console.WriteLine("There are monthly passes available!");
 		}
