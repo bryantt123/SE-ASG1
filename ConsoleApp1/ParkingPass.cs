@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.SqlServer.Server;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.NetworkInformation;
@@ -79,7 +80,45 @@ namespace ConsoleApp1
             // Check if the parking pass is not active, indicating no active pass to terminate
             if (state != validState)
             {
-                Console.WriteLine("No active season parking pass found. Termination process aborted.");
+                if (passType == "Daily")
+                {
+                    Console.WriteLine("Your Daily Season Pass has expired");
+                    Console.WriteLine("Please choose if you would like to renew or terminate your season pass");
+
+
+                    Console.WriteLine("---------------------Menu---------------------");
+                    Console.WriteLine("[1] Renew Daily Season Pass");
+                    Console.WriteLine("[2] Terminate Daily Season Pass");
+                    Console.WriteLine("[3] Exit");
+                    Console.WriteLine("----------------------------------------------");
+
+                    Console.Write("Select option: ");
+
+                    int option = Convert.ToInt32(Console.ReadLine());
+                    if (option == 0)
+                    {
+                        return;
+                    }
+                    else if (option == 1)
+                    {
+                        /* Method to call renew */
+
+                        Console.WriteLine("Your Daily Season Pass has been renewd");
+                        return;
+                    }
+
+                    else if (option == 2)
+                    {
+                        Console.WriteLine("Daily Season Pass has been terminated");
+                        return;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("No active season parking pass found. Termination process aborted.");
+                    return;
+                }
+                
                 return;
             }
 

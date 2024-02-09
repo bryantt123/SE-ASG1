@@ -51,8 +51,8 @@ namespace ConsoleApp1
                     if (parkingPass.PassType == "Daily" || parkingPass.PassType == "Monthly")
                     {
                         parkingPass.TerminatePass(reason, parkingPass.PassType);
-                        Console.WriteLine("parkingPass.TerminatePass(reason) called");
-                        Console.WriteLine($"{parkingPass.PassType} season pass Terminated!");
+                        //Console.WriteLine("parkingPass.TerminatePass(reason) called");
+                        //Console.WriteLine($"{parkingPass.PassType} season pass Terminated!");
                     }
                     else
                     {
