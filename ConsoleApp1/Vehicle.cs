@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-	public class Vehicle
+	class Vehicle
 	{
 		private string VehicleType { get; set; }
 		private string LicensePlateNo { get; set; }

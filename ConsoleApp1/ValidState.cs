@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-    public class ValidState : PPState
+    class ValidState : PPState
     {
         private ParkingPass parkingPass;
 

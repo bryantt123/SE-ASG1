@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-	public class Carpark
+	class Carpark
 	{
 		private int CarparkId { get; set; }
 		private string Description { get; set; }

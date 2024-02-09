@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-	public class FinancialReport
+	class FinancialReport
 	{
 		private double AllVehiclesRevenue { get; set; }
 		private double StaffVehiclesRevenue { get; set; }

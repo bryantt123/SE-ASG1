@@ -9,13 +9,12 @@ using static ConsoleApp1.ParkingPass;
 
 namespace ConsoleApp1
 {
-	public class ParkingPass
+	class ParkingPass
 	{
 		private bool isParked { get; set; }
 		public bool IsParked { get; set; }
 
         private string passType { get; set; }
-        public string PassType { get; set; }
 	
 		private double ChargeRate { get; set; }
 		private int NumPass { get; set; }
@@ -42,7 +41,7 @@ namespace ConsoleApp1
 			terminatedState = new TerminatedState(this);
             pendingApprovalState = new PendingApprovalState(this);
 
-			state = validState; // or pending approval???
+            state = pendingApprovalState;
             NumPass = 100;
         }
 

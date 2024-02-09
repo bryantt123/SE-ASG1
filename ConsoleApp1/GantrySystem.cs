@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-	public class GantrySystem
+	class GantrySystem
 	{
 		public void PurgeRecord()
 		{

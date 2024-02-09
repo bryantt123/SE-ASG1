@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-    public class ExpiredState : PPState
+    class ExpiredState : PPState
     {
         private ParkingPass parkingPass;
 
@@ -18,13 +18,11 @@ namespace ConsoleApp1
         public void park()
         {
             Console.WriteLine("You cannot park. Your pass has expired.");
-            parkingPass.IsParked = true;
         }
 
         public void exit()
         {
             Console.WriteLine("You cannot exit. Your pass has expired.");
-            parkingPass.IsParked = false;
         }
         public void applyPass()
         {

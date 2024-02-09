@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-	public class ParkingRecord
+	class ParkingRecord
 	{
 		private DateTime Entry { get; set; }
 		private DateTime Exit { get; set; }

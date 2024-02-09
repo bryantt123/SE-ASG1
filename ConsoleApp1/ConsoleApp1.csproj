@@ -61,7 +61,6 @@
     <Compile Include="TerminatedState.cs" />
     <Compile Include="ValidState.cs" />
     <Compile Include="Vehicle.cs" />
-    <Compile Include="WaitingList.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

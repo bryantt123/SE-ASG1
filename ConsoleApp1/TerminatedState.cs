@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-    public class TerminatedState : PPState
+    class TerminatedState : PPState
     {
         private ParkingPass parkingPass;
 
@@ -18,12 +18,10 @@ namespace ConsoleApp1
         public void park()
         {
             Console.WriteLine("You cannot park. Your pass has been terminated");
-            parkingPass.IsParked = true;
         }
         public void exit()
         {
             Console.WriteLine("You cannot exit. Your pass has been terminated.");
-            parkingPass.IsParked = false;
         }
         public void applyPass()
         {

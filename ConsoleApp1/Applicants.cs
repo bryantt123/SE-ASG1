@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-	public class Applicants : Observer
+	class Applicants : Observer
 	{
+		private Subject ppData;
 		private string Name { get; set; }
 		private string ID { get; set; }
-
 		private string Username { get; set; }
 		private string Password { get; set; }
 		private int MobileNo { get; set; }
@@ -18,8 +18,18 @@ namespace ConsoleApp1
 		public DateTime endMonth { get; set; }
 		private string PaymentMode { get; set; }
 		private string LicensePlateNo { get; set; }
+		private bool paymentMade { get; set; }
 		private int IUNumber { get; set; }
 		private string VehicleType { get; set; }
+		public Applicants(Subject pp)
+		{
+			this.ppData = pp;
+			ppData.registerObserver(this);
+		}
+		public void Update()
+		{
+			Console.WriteLine("There are monthly passes available!");
+		}
 	}
 
 }

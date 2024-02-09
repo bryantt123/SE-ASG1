@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-    internal interface Subject
+    interface Subject
     {
+        void registerObserver(Observer o);
+        void removeObserver(Observer o);
+        void notifyObservers();
     }
 }

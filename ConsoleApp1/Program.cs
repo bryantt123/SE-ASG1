@@ -95,7 +95,7 @@ namespace ConsoleApp1
                 else if (option == 6)
                 {
                     // generate financial report
-                    Console.WriteLine("Generate! ");
+                    Console.WriteLine("Generated! ");
                 }
                 else
                 {

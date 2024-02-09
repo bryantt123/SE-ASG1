@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-    internal interface Observer
+    interface Observer
     {
-
+        void Update();
     }
 }
