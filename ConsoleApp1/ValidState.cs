@@ -63,7 +63,7 @@ namespace ConsoleApp1
             }
                 else if (confirmation == 0)
                 {
-                    //break
+                    Console.WriteLine("Cancelled");
                 }
 
             }
