@@ -12,14 +12,28 @@ namespace ConsoleApp1
 		private int numPassLeft { get; set; } = 5;
 		public int NumPassLeft { get; set; } = 5;
 
-		private List<Applicants> waitingList { get; set; }
+		// singleton
+        private static MonthlySeasonPassCollection uniqueInstance = null;
+
+        private List<Applicants> waitingList { get; set; }
 
 		public MonthlySeasonPassCollection()
 		{
 			observers = new List<Observer>(); 
 		}
 
-		// add to waiting list
+		// singleton
+        public static MonthlySeasonPassCollection getInstance()
+        {
+            if (uniqueInstance == null)
+            {
+                uniqueInstance = new MonthlySeasonPassCollection();
+            }
+
+            return uniqueInstance;
+        }
+
+        // add to waiting list
         public void registerObserver(Observer o)
 		{
 			observers.Add(o);
@@ -45,12 +59,18 @@ namespace ConsoleApp1
 			Console.WriteLine("Notified");
 		}
 
+		public int getNumPassLeft()
+		{
+			return numPassLeft;
+		}
+
 		public void RefundUnused()
 		{
             Console.WriteLine("Refund processed for unused full months.");
             /* Implementation */
         }
 		
+
 	
 	}
 }

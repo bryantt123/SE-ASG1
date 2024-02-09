@@ -21,7 +21,8 @@ namespace ConsoleApp1
         {
             ParkingPass parkingPass = new ParkingPass();
             Subject PPData = new MonthlySeasonPassCollection();
-            Applicants applicants = new Applicants(PPData);
+            //Applicants applicants = new Applicants();
+            //Applicants applicants = new Applicants(PPData);
             parkingPass.PassType = "";
             List<Applicants> applicantList= new List<Applicants>();
 
@@ -40,7 +41,7 @@ namespace ConsoleApp1
                 else if (option == 1)
                 {
 
-                    // ApplyPass(observers);
+                    applicant.ApplyPass();
                     Console.WriteLine("Applied! ");
                 }
                 else if (option == 2) //renew
@@ -225,7 +226,7 @@ namespace ConsoleApp1
                     parkingPass.PassType = Console.ReadLine();
                     if (parkingPass.PassType == "Daily" || parkingPass.PassType == "Monthly")
                     {
-                        parkingPass.TerminatePass(reason, parkingPass.PassType, applicants);
+                        //parkingPass.TerminatePass(reason, parkingPass.PassType, applicants);
                         //Console.WriteLine("parkingPass.TerminatePass(reason) called");
                         //Console.WriteLine($"{parkingPass.PassType} season pass Terminated!");
                     }
@@ -292,53 +293,90 @@ namespace ConsoleApp1
                 Console.WriteLine("----------------------------------------------");
             }
 
-            void ApplyPass(List<Observer> observers)
-            {
+            //void ApplyPass()
+            //{
 
-                Console.WriteLine("Are you applying for Monthly or Daily season parking pass? ");
-                string passType = Console.ReadLine();
+            //    int passType;               
+            //    Console.WriteLine("[1] Daily\n[2] Monthly");
 
-                if (passType == "Daily")
-                {
+            //    Console.Write("Which pass are you appling for? ");
+            //    passType = Convert.ToInt32(Console.ReadLine());
 
-                    Console.WriteLine("Please input the following information:\n - Name\n - Month for application\n - Mobile Number\n - Payment mode\n - License plate number\n - IU number\n - Vehicle type\n(Separated by commas)");
-
-                    //User provides the system with all the information required
-                    string collatedInfo = Console.ReadLine();
-                    string[] applicationInfo = collatedInfo.Split(',');
-
-                    //Executing payment use case
-                    Console.WriteLine("Redirecting you to payment...");
-                    Console.WriteLine("Payment Successful!");
-
-                    DateTime startMonth = Convert.ToDateTime(applicationInfo[1]);
-                    DailySeasonPass dailySeasonPass = new DailySeasonPass("Daily", 1, startMonth);
-                    dailySeasonPass.setPending();
+            //    if (passType == 1)
+            //    {
 
 
-                }
+            //        Console.WriteLine("Please input the following information:\n - Name\n - Month for application\n - Mobile Number\n - Payment mode\n - License plate number\n - IU number\n - Vehicle type\n");
 
-                else if (passType == "Monthly")
-                {
-                    //if (NumPassLeft > 0)
-                    //{
-                        
-                    //}
-                    //else if (NumPassLeft == 0)
-                    //{
-                    //    Console.WriteLine("There are no Monthly passes left! Go to waiting list? [Y/N]");
-                    //    string decision = Console.ReadLine();
-                    //    if (decision == "Y")
-                    //    {
+            //        //User provides the system with all the information required
+            //        string collatedInfo = Console.ReadLine();
+            //        string[] applicationInfo = collatedInfo.Split(',');
 
-                    //    }
-                    //    if (decision == "N")
-                    //    {
-                            
-                    //    }
-                    //}
-                }
-            }
+            //        //Executing payment use case
+            //        Console.WriteLine("Redirecting you to payment...");
+            //        Console.WriteLine("Payment Successful!");
+
+            //        DateTime startMonth = Convert.ToDateTime(applicationInfo[1]);
+            //        DailySeasonPass dailySeasonPass = new DailySeasonPass("Daily", 1, startMonth);
+            //        dailySeasonPass.setPending();
+
+
+
+            //        Console.WriteLine("Daily Season Pass Object has been created");
+            //    }
+
+            //    else if (passType == 2)
+            //    {
+            //        MonthlySeasonPassCollection waitingList = MonthlySeasonPassCollection.getInstance();
+
+            //        if (waitingList.NumPassLeft == 0)
+            //        {
+            //            Console.WriteLine("No Monthly passes left. Sign up for waiting list? [Y/N]");
+            //            string signUp = Console.ReadLine().ToLower();
+
+            //            }
+            //            if (decision == "N")
+            //            {
+
+            //            }
+            //        }
+            //    }
+
+
+            //}
+
+            //            void transferPass()
+            //            {
+            //                /* 
+            //                    display season passes
+            //                    choose season pass
+            //                    display vehicles
+            //                    choose vehicle/add vehicle
+            //                    confirm trasnfer
+            //                    change season pass details
+            //                    display success
+            //                    */
+
+            //                Console.WriteLine("Enter your username registered to your season pass: ");
+            //                string un = Console.ReadLine();
+            //                Console.WriteLine("Enter your password: ");
+            //                string pw = Console.ReadLine();
+            //                foreach (Applicants applicant in applicantList)
+            //                {
+            //                    if (applicant.verifyUser(un, pw) == true)
+            //                    {
+            //                        break;
+            //                    }
+            //                    else
+            //                    {
+            //                        Console.WriteLine("Error authenticating user!");
+            //                        return;
+            //                    }
+            //                }
+
+
         }
+
     }
 }
+

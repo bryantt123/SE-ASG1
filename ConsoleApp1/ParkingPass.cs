@@ -68,125 +68,126 @@ namespace ConsoleApp1
             currentState.renewPass(this);
         }
 
-        DateTime endMonth = DateTime.Now;
-        Applicants applicants = new Applicants();
-        private MonthlySeasonPassCollection monthlyPasses;
-        public void TerminatePass(string reason, string passType, Applicants applicants)
-		{
-            //DateTime applicantEndMonth = applicants.EndMonth;
-            //state = validState;
 
-            //if (applicantEndMonth  == null)
-            //{
-            //    applicantEndMonth = DateTime.Now;
-            //    Console.WriteLine($"Applicant end date is {applicantEndMonth}");
-            //}
-            passType = passType.Trim();
-            // Check if the reason or passType is empty or null
-            if (string.IsNullOrWhiteSpace(reason) || string.IsNullOrWhiteSpace(passType))
-            {
-                Console.WriteLine("Termination reason and pass type must be provided. Termination aborted.");
-                return;
-            }
+        //DateTime endMonth = DateTime.Now;
+        //Applicants applicants = new Applicants();
+        //private MonthlySeasonPassCollection monthlyPasses;
+        //public void TerminatePass(string reason, string passType, Applicants applicants)
+        //{
+        //    DateTime applicantEndMonth = applicants.EndMonth;
+        //    state = validState;
 
-            // Check if the entered pass type is neither "Daily" nor "Monthly"
-            if (passType != "Daily" && passType != "Monthly")
-            {
-                Console.WriteLine("Please enter either 'Daily' or 'Monthly' only. Termination aborted.");
-                return;
-            }
+        //    if (applicantEndMonth == null)
+        //    {
+        //        applicantEndMonth = DateTime.Now;
+        //        Console.WriteLine($"Applicant end date is {applicantEndMonth}");
+        //    }
+        //    passType = passType.Trim();
+        //    // Check if the reason or passType is empty or null
+        //    if (string.IsNullOrWhiteSpace(reason) || string.IsNullOrWhiteSpace(passType))
+        //    {
+        //        Console.WriteLine("Termination reason and pass type must be provided. Termination aborted.");
+        //        return;
+        //    }
 
-            // Check if the parking pass is not active, indicating no active pass to terminate
-            if (state != validState)
-            {
-                if (passType == "Daily")
-                {
-                    Console.WriteLine("Your Daily Season Pass has expired");
-                    Console.WriteLine("Please choose if you would like to renew or terminate your season pass");
+        //    // Check if the entered pass type is neither "Daily" nor "Monthly"
+        //    if (passType != "Daily" && passType != "Monthly")
+        //    {
+        //        Console.WriteLine("Please enter either 'Daily' or 'Monthly' only. Termination aborted.");
+        //        return;
+        //    }
 
-
-                    Console.WriteLine("---------------------Menu---------------------");
-                    Console.WriteLine("[1] Renew Daily Season Pass");
-                    Console.WriteLine("[2] Terminate Daily Season Pass");
-                    Console.WriteLine("[3] Exit");
-                    Console.WriteLine("----------------------------------------------");
-
-                    Console.Write("Select option: ");
-
-                    int option = Convert.ToInt32(Console.ReadLine());
-                    if (option == 0)
-                    {
-                        return;
-                    }
-                    else if (option == 1) //Renew
-                    {
-                        /* Method to call renew */
-
-                        Console.WriteLine("Your Daily Season Pass has been renewd");
-                        return;
-                    }
-
-                    else if (option == 2)
-                    {
-                        Console.WriteLine("Daily Season Pass has been terminated");
-                        return;
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("No active season parking pass found. Termination process aborted.");
-                    return;
-                }
-
-                return;
-            }
+        //    // Check if the parking pass is not active, indicating no active pass to terminate
+        //    if (state != validState)
+        //    {
+        //        if (passType == "Daily")
+        //        {
+        //            Console.WriteLine("Your Daily Season Pass has expired");
+        //            Console.WriteLine("Please choose if you would like to renew or terminate your season pass");
 
 
-            // Check if the passType argument matches the Type of the ParkingPass
-            else if (this.passType == passType)
-            {
-                state = terminatedState;
-                // If the season pass is "Daily"
-                if (passType == "Daily")
-                {
-                    Console.WriteLine("Daily Season Pass is terminated.");
-                    return;
-                }
-                // If the season pass is "Monthly" and there are full months left to refund
-                //else if (passType == "Monthly" && applicantEndMonth > DateTime.Now)
-                //{
-                //    double refundAmount = CalculateRefund();
-                //    Console.WriteLine($"Monthly season pass terminated. Refund of ${refundAmount} processed.");
-                //    //NumPass += 1; // Assuming NumPass is the number of passes left, and you increment it since one is now available.
-                //    //Console.WriteLine($"Number of Monthly Season Pass left is {NumPass}");
-                //    Console.WriteLine("There are available Monthly Season Pass now!");
-                //    this.monthlyPasses.availablePass();
+        //            Console.WriteLine("---------------------Menu---------------------");
+        //            Console.WriteLine("[1] Renew Daily Season Pass");
+        //            Console.WriteLine("[2] Terminate Daily Season Pass");
+        //            Console.WriteLine("[3] Exit");
+        //            Console.WriteLine("----------------------------------------------");
 
-                //    return;
-                //}
-                // If the season pass is "Monthly" but there are no full months left to refund
-                else if (passType == "Monthly")
-                {
-                    Console.WriteLine("Monthly season pass terminated without a refund.");
-                    //NumPass += 1; // Assuming NumPass is the number of passes left, and you increment it since one is now available.
-                    //Console.WriteLine($"Number of Monthly Season Pass left is {NumPass}");
-                    Console.WriteLine("There are available Monthly Season Pass now!");
-                    this.monthlyPasses.availablePass();
-                    return;
-                }
-                Console.WriteLine("Season Pass Terminated for reason: " + reason);
-                return;
-            }
+        //            Console.Write("Select option: ");
 
-            /* Implementation */
-        }
+        //            int option = Convert.ToInt32(Console.ReadLine());
+        //            if (option == 0)
+        //            {
+        //                return;
+        //            }
+        //            else if (option == 1) //Renew
+        //            {
+        //                /* Method to call renew */
+
+        //                Console.WriteLine("Your Daily Season Pass has been renewd");
+        //                return;
+        //            }
+
+        //            else if (option == 2)
+        //            {
+        //                Console.WriteLine("Daily Season Pass has been terminated");
+        //                return;
+        //            }
+        //        }
+        //        else
+        //        {
+        //            Console.WriteLine("No active season parking pass found. Termination process aborted.");
+        //            return;
+        //        }
+
+        //        return;
+        //    }
+
+
+        //    // Check if the passType argument matches the Type of the ParkingPass
+        //    else if (this.passType == passType)
+        //    {
+        //        state = terminatedState;
+        //        // If the season pass is "Daily"
+        //        if (passType == "Daily")
+        //        {
+        //            Console.WriteLine("Daily Season Pass is terminated.");
+        //            return;
+        //        }
+        //        // If the season pass is "Monthly" and there are full months left to refund
+        //        else if (passType == "Monthly" && applicantEndMonth > DateTime.Now)
+        //        {
+        //            double refundAmount = CalculateRefund();
+        //            Console.WriteLine($"Monthly season pass terminated. Refund of ${refundAmount} processed.");
+        //            NumPass += 1; // Assuming NumPass is the number of passes left, and you increment it since one is now available.
+        //            Console.WriteLine($"Number of Monthly Season Pass left is {NumPass}");
+        //            Console.WriteLine("There are available Monthly Season Pass now!");
+        //            this.monthlyPasses.availablePass();
+
+        //            return;
+        //        }
+        //        // If the season pass is "Monthly" but there are no full months left to refund
+        //        else if (passType == "Monthly")
+        //        {
+        //            Console.WriteLine("Monthly season pass terminated without a refund.");
+        //            NumPass += 1; // Assuming NumPass is the number of passes left, and you increment it since one is now available.
+        //            Console.WriteLine($"Number of Monthly Season Pass left is {NumPass}");
+        //            Console.WriteLine("There are available Monthly Season Pass now!");
+        //            this.monthlyPasses.availablePass();
+        //            return;
+        //        }
+        //        Console.WriteLine("Season Pass Terminated for reason: " + reason);
+        //        return;
+        //    }
+
+        //    /* Implementation */
+        //}
 
 
         public void TransferPass()
-        {
-            /* Implementation */
-        }
-        // Other properties and methods
+		{
+			/* Implementation */
+		}
+		// Other properties and methods
 
 
 

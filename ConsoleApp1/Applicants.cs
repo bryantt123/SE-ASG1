@@ -51,11 +51,19 @@ namespace ConsoleApp1
 
         public Applicants(Subject pp)
         {
-            this.ppData = pp;
-            ppData.registerObserver(this);
-            // data
-            PpList = new List<ParkingPass>
-            {
+			this.ppData = pp;
+			ppData.registerObserver(this);
+			
+			ID = id;
+			Username = un;
+			Password = pw;
+			MobileNo = mn;
+			PaymentMode = pm;
+			Vehicle vehicle = new Vehicle(v, l, i);
+			vehicles.Add(vehicle);
+			// data
+			PpList = new List<ParkingPass>
+			{
 				// Expired (daily still can renew)
                 new ParkingPass { PassId = 1, PassType = "Monthly", EndMonth = new DateTime(2024, 1, 21)},
                 new ParkingPass { PassId = 2, PassType = "Weekly", EndMonth = new DateTime(2024, 1, 21)},
@@ -78,24 +86,89 @@ namespace ConsoleApp1
 			Console.WriteLine("There are monthly passes available!");
 		}
 
-		public void addVehicle(string v, string l, int i)
-		{
-			Vehicle veh = new Vehicle(v, l, i);
-			vehicles.Add(veh);
-		}
+        public bool ApplyPass()
+        {
 
-		public bool verifyUser(string un, string pw)
-		{
-			if (un == Username && pw == Password)
-			{
-				Console.WriteLine("Authentication success!");
-				return true;
-			}
-			else
-			{
-				return false;
-			}
-		}
-	}
+            int passType;
+            Console.WriteLine("[1] Daily\n[2] Monthly");
+
+            Console.Write("Which pass are you applying for? ");
+            passType = Convert.ToInt32(Console.ReadLine());
+
+            if (passType == 1)
+            {
+
+                //Console.WriteLine("Please input the following information:\n - Name\n - Month for application\n - Mobile Number\n - Payment mode\n - License plate number\n - IU number\n - Vehicle type\n");
+
+                ////User provides the system with all the information required
+                //string collatedInfo = Console.ReadLine();
+                //string[] applicationInfo = collatedInfo.Split(',');
+
+                ////Executing payment use case
+                //Console.WriteLine("Redirecting you to payment...");
+                //Console.WriteLine("Payment Successful!");
+
+                //DateTime startMonth = Convert.ToDateTime(applicationInfo[1]);
+                //DailySeasonPass dailySeasonPass = new DailySeasonPass("Daily", 1, startMonth);
+                //dailySeasonPass.setPending();
+
+                Console.Write("Please enter your Name: ");
+
+                Console.Write("Please enter the Month for application: ");
+
+                Console.Write("Please enter your Mobile Number: ");
+                string mobileNo = Console.ReadLine();
+
+
+                Console.Write("Please enter your Payment mode: ");
+
+                Console.Write("License plate number");
+
+                Console.Write("IU number");
+
+                Console.Write("Vehicle Type");
+
+
+
+                Console.WriteLine("Daily Season Pass Object has been created");
+            }
+
+            else if (passType == 2)
+            {
+                MonthlySeasonPassCollection waitingList = MonthlySeasonPassCollection.getInstance();
+
+                if (waitingList.NumPassLeft == 0)
+                {
+                    Console.WriteLine("No Monthly passes left. Sign up for waiting list? [Y/N]");
+                    string signUp = Console.ReadLine().ToLower();
+
+                    if (signUp == "Y")
+                    {
+
+                        waitingList.registerObserver(this);
+
+                        Console.WriteLine("You are now in the waiting list for Monthly passes.");
+                    }
+                    else if (signUp == "N") 
+                    {
+                        Console.WriteLine("You have decided opt out.\nUse case ends.");
+                        
+                    }
+                    return false;
+
+                }
+                else
+                {
+                    Console.WriteLine("Please input the following information:\n - Name\n - Month for application\n - Mobile Number\n - Payment mode\n - License plate number\n - IU number\n - Vehicle type\n");
+                    //User provides the system with all the information required
+                    string collatedInfo = Console.ReadLine();
+                    string[] applicationInfo = collatedInfo.Split(',');
+                }
+                
+            }
+            return true;
+
+        }
+    }
 
 }
