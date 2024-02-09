@@ -33,21 +33,19 @@ namespace ConsoleApp1
 			PaymentMode = pm;
 			Vehicle vehicle = new Vehicle(v, l, i);
 			vehicles.Add(vehicle);
-            // data
-            PpList = new List<ParkingPass>
-            {
+			// data
+			PpList = new List<ParkingPass>
+			{
 				// Expired (daily still can renew)
                 new ParkingPass { PassId = 1, PassType = "Monthly", EndMonth = new DateTime(2024, 1, 21)},
-                new ParkingPass { PassId = 2, PassType = "Weekly", EndMonth = new DateTime(2024, 1, 21)},
+				new ParkingPass { PassId = 2, PassType = "Weekly", EndMonth = new DateTime(2024, 1, 21)},
 				// Valid (both can renew)
 				new ParkingPass { PassId = 3, PassType = "Monthly", EndMonth = new DateTime(2024, 3, 21)},
-                new ParkingPass { PassId = 4, PassType = "Weekly", EndMonth = new DateTime(2024, 3, 21) }
-        // Add more hardcoded data as needed
-		}
+				new ParkingPass { PassId = 4, PassType = "Weekly", EndMonth = new DateTime(2024, 3, 21) }
+			// Add more hardcoded data as needed
+			};
 
 
-
-    };
         }
 
 		public void Update()
