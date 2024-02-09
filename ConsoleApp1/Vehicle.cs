@@ -8,9 +8,15 @@ namespace ConsoleApp1
 {
 	class Vehicle
 	{
-		private string VehicleType { get; set; }
-		private string LicensePlateNo { get; set; }
-		private int IUNo { get; set; }
+		private string vehicleType { get; set; }
+		private string licensePlateNo { get; set; }
+		private int iuNo { get; set; }
 
+		public Vehicle(string v, string l, int i)
+		{
+			vehicleType = v;
+			licensePlateNo = l;
+			iuNo = i;
+		}
 	}
 }

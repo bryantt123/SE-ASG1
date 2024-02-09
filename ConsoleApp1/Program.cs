@@ -2,10 +2,16 @@
 using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
+using System.Xml.Linq;
+using System.Management.Instrumentation;
 
 namespace ConsoleApp1
 {
@@ -14,10 +20,14 @@ namespace ConsoleApp1
         static void Main(string[] args)
         {
             ParkingPass parkingPass = new ParkingPass();
+            Subject PPData = new MonthlySeasonPassCollection();
+            Applicants applicants = new Applicants(PPData);
+            parkingPass.PassType = "";
+           
+
             MonthlySeasonPassCollection subject = new MonthlySeasonPassCollection();
             Applicants applicant = new Applicants(subject);
 
-            parkingPass.passType = "Monthly";
             while (true)
             {
                 displayMenu();
@@ -29,7 +39,8 @@ namespace ConsoleApp1
                 }
                 else if (option == 1)
                 {
-                    //apply season pass
+
+                    // ApplyPass(observers);
                     Console.WriteLine("Applied! ");
                 }
                 else if (option == 2) //renew
@@ -109,12 +120,12 @@ namespace ConsoleApp1
 
                     string reason = Console.ReadLine();
                     Console.WriteLine("What type of season pass would you like to terminate? Daily / Monthly? (Case Sensitive, Please Copy Paste) :");
-                    parkingPass.passType = Console.ReadLine();
-                    if (parkingPass.passType == "Daily" || parkingPass.passType == "Monthly")
+                    parkingPass.PassType = Console.ReadLine();
+                    if (parkingPass.PassType == "Daily" || parkingPass.PassType == "Monthly")
                     {
-                        parkingPass.TerminatePass(reason, parkingPass.passType);
-                        Console.WriteLine("parkingPass.TerminatePass(reason) called");
-                        Console.WriteLine($"{parkingPass.passType} season pass Terminated!");
+                        parkingPass.TerminatePass(reason, parkingPass.PassType, applicants);
+                        //Console.WriteLine("parkingPass.TerminatePass(reason) called");
+                        //Console.WriteLine($"{parkingPass.PassType} season pass Terminated!");
                     }
                     else
                     {
@@ -166,9 +177,6 @@ namespace ConsoleApp1
             }
 
 
-
-
-
             void displayMenu()
             {
                 Console.WriteLine("---------------------Menu---------------------");
@@ -182,7 +190,55 @@ namespace ConsoleApp1
                 Console.WriteLine("----------------------------------------------");
             }
 
-            
+            void ApplyPass(List<Observer> observers)
+            {
+
+                Console.WriteLine("Are you applying for Monthly or Daily season parking pass? ");
+                string passType = Console.ReadLine();
+
+                if (passType == "Daily")
+                {
+                    
+                    Console.WriteLine("Please input the following information:\n - Name\n - Month for application\n - Mobile Number\n - Payment mode\n - License plate number\n - IU number\n - Vehicle type\n(Separated by commas)");
+
+                    //User provides the system with all the information required
+                    string collatedInfo = Console.ReadLine();
+                    string[] applicationInfo = collatedInfo.Split(',');
+
+                    //Executing payment use case
+                    Console.WriteLine("Redirecting you to payment...");
+                    Console.WriteLine("Payment Successful!");
+
+                    DateTime startMonth = Convert.ToDateTime(applicationInfo[1]);
+                    DailySeasonPass dailySeasonPass = new DailySeasonPass("Daily", 1, startMonth);
+                    dailySeasonPass.setPending();
+                    
+
+                }
+
+                else if (passType == "Monthly")
+                {
+                    if (NumPassLeft > 0)
+                    {
+                        
+                    }
+                    else if (NumPassLeft == 0)
+                    {
+                        Console.WriteLine("There are no Monthly passes left! Go to waiting list? [Y/N]");
+                        string decision = Console.ReadLine();
+                        if (decision == "Y")
+                        {
+
+                        }
+                        if (decision == "N")
+                        {
+                            
+                        }
+                    }
+                }
+
+
+            }
 
         }
     }
