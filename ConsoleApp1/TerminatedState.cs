@@ -33,7 +33,7 @@ namespace ConsoleApp1
         }
         public void transferPass()
         {
-            //implementation
+            Console.WriteLine("You cannot transfer a pass that has been terminated.");
         }
         public void terminatePass()
         {

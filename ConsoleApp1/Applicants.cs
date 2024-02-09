@@ -14,15 +14,9 @@ namespace ConsoleApp1
 		private string Username { get; set; }
 		private string Password { get; set; }
 		private int MobileNo { get; set; }
-		private DateTime startMonth { get; set; }
-		public DateTime StartMonth { get; set; }
-		private DateTime endMonth { get; set; }
-		public DateTime EndMonth { get; set; }
 		private string PaymentMode { get; set; }
-		private string LicensePlateNo { get; set; }
-		private bool paymentMade { get; set; }
-		private int IUNumber { get; set; }
-		private string VehicleType { get; set; }
+		private List<Vehicle> vehicles { get; set; }
+
 		public Applicants(Subject pp)
 		{
 			this.ppData = pp;
