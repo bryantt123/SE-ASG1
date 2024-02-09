@@ -21,7 +21,7 @@ namespace ConsoleApp1
         public string PassType { get; set; }
 		private DateTime startMonth { get; set; }
         public DateTime StartMonth { get; set; }
-        private DateTime etartMonth { get; set; }
+        private DateTime endMonth { get; set; }
         public DateTime EndMonth { get; set; }
  
 		

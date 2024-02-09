@@ -93,24 +93,114 @@ namespace ConsoleApp1
                         {
                             //break
                         }
-
-
                     }
                     // expired/terminated daily pass
                     else
                     {
                         Console.WriteLine("Unable to renew pass.");
                     }
-
-
-
-
-                    Console.WriteLine("Renewed! ");
                 }
                 else if (option == 3)
                 {
-                    
-                    Console.WriteLine("Transfered! ");
+                    /* 
+                    display season passes
+                    choose season pass
+                    display vehicles
+                    choose vehicle/add vehicle
+                    confirm trasnfer
+                    change season pass details
+                    display success
+                    */
+
+                    // display user's season passes
+                    int passIdOg;
+                    int iuNoNew;
+                    foreach (Vehicle veh in applicant.Vehicles)
+                    {
+                        if (veh.ParkingPass != null)
+                        {
+                            Console.WriteLine("Pass ID: [" + veh.ParkingPass.PassId + "] Plate No: [" + veh.LicensePlateNo + "] Pass Type: "+ veh.ParkingPass.PassType, "Vehicle Type: ",veh.VehicleType);
+                        }
+                    }
+
+                    // user chooses a season pass to transfer
+                    Console.Write("Enter a season pass ID to transfer: ");
+                    passIdOg = Convert.ToInt32(Console.ReadLine());
+                    int opt = passIdOg - 1;
+                    // display vehicles registered to user
+                    foreach (Vehicle veh in applicant.Vehicles)
+                    {
+                        if (veh.ParkingPass == null)
+                        {
+                            Console.WriteLine("Plate No: [" + veh.LicensePlateNo + "] IU No: [" + veh.IuNo + "] Type: " + veh.VehicleType);
+                        }
+                    }
+
+                    // choose vehicle
+                    Console.Write("Enter the vehicle's IU No. to transfer to, or enter 0 to add a new vehicle: ");
+                    int iu = Convert.ToInt32(Console.ReadLine());
+                    iuNoNew = iu;
+                    if (iu != 0)
+                    {
+                        iu -= 1;
+                    }
+                    else
+                    {
+                        // add vehicle
+                        Console.Write("Enter new vehicle details to add (VehicleType,LicensePlateNo,IuNo): ");
+                        string newVeh = Console.ReadLine();
+                        string[] newVehDetails = newVeh.Split(',');
+                        applicant.Vehicles.Add(new Vehicle { VehicleType = newVehDetails[0],LicensePlateNo = newVehDetails[1], IuNo=Convert.ToInt32(newVehDetails[2]) });
+
+                        //display new set of vehicles
+                        foreach (Vehicle veh in applicant.Vehicles)
+                        {
+                            if (veh.ParkingPass == null)
+                            {
+                                Console.WriteLine("Plate No: [" + veh.LicensePlateNo + "] IU No: [" + veh.IuNo + "] Type: " + veh.VehicleType);
+                            }
+                        }
+
+                        //choose vehicle
+                        Console.Write("Enter the vehicle's IU No. to transfer to: ");
+                        iu = Convert.ToInt32(Console.ReadLine()) - 1;
+                        iuNoNew = iu + 1;
+                    }
+                    Console.Write("Type confirm to transfer pass ID [{0}] to Vehicle with Iu No [{1}]: ", passIdOg, iuNoNew);
+                    string confirmation = Console.ReadLine();
+                    if (confirmation == "confirm")
+                    {
+                        foreach (Vehicle veh in applicant.Vehicles)
+                        {
+                            if (veh.ParkingPass != null && veh.ParkingPass.PassId == passIdOg)
+                            {
+                                Vehicle ogVeh = veh;
+                                foreach (Vehicle veh2 in applicant.Vehicles)
+                                {
+                                    if(veh2.IuNo == iuNoNew)
+                                    {
+                                        veh2.ParkingPass = veh.ParkingPass;
+                                        veh.ParkingPass = null;
+                                        Console.WriteLine("Transfer Successful.");
+                                        break;
+                                    }
+                                }
+                                break;
+                            }
+                        }
+                        foreach (Vehicle veh in applicant.Vehicles)
+                        {
+                            if (veh.ParkingPass != null)
+                            {
+                                Console.WriteLine("Pass ID: [" + veh.ParkingPass.PassId + "] Plate No: [" + veh.LicensePlateNo + "] Pass Type: " + veh.ParkingPass.PassType);
+                                break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Confirmation cancelled, transfer cancelled.");
+                    }
                 }
                 else if (option == 4)
                 {
