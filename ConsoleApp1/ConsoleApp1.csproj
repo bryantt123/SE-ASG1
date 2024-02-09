@@ -49,6 +49,7 @@
     <Compile Include="ExpiredState.cs" />
     <Compile Include="FinancialReport.cs" />
     <Compile Include="GantrySystem.cs" />
+    <Compile Include="MonthlySeasonPass.cs" />
     <Compile Include="MonthlySeasonPassCollection.cs" />
     <Compile Include="Observer.cs" />
     <Compile Include="ParkingPass.cs" />
