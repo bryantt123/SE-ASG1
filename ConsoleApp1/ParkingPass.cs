@@ -72,15 +72,15 @@ namespace ConsoleApp1
 		}
 
 
-        //DateTime endMonth = DateTime.Now;
-        //Applicants applicants = new Applicants();
+        DateTime endMonth = DateTime.Now;
+        Applicants applicants = new Applicants();
         private MonthlySeasonPassCollection monthlyPasses;
         public void TerminatePass(string reason, string passType, Applicants applicants)
-		{
+        {
             DateTime applicantEndMonth = applicants.EndMonth;
-            //state = validState;
+            state = validState;
 
-            if (applicantEndMonth  == null)
+            if (applicantEndMonth == null)
             {
                 applicantEndMonth = DateTime.Now;
                 Console.WriteLine($"Applicant end date is {applicantEndMonth}");
@@ -141,7 +141,7 @@ namespace ConsoleApp1
                     Console.WriteLine("No active season parking pass found. Termination process aborted.");
                     return;
                 }
-                
+
                 return;
             }
 
@@ -181,12 +181,12 @@ namespace ConsoleApp1
                 Console.WriteLine("Season Pass Terminated for reason: " + reason);
                 return;
             }
-            
+
             /* Implementation */
         }
 
-		
-		public void TransferPass()
+
+        public void TransferPass()
 		{
 			/* Implementation */
 		}

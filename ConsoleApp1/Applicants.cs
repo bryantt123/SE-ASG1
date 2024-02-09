@@ -35,6 +35,67 @@ namespace ConsoleApp1
 		{
 			Console.WriteLine("There are monthly passes available!");
 		}
-	}
+
+        public bool ApplyPass()
+        {
+
+            int passType;
+            Console.WriteLine("[1] Daily\n[2] Monthly");
+
+            Console.Write("Which pass are you applying for? ");
+            passType = Convert.ToInt32(Console.ReadLine());
+
+            if (passType == 1)
+            {
+
+                Console.WriteLine("Please input the following information:\n - Name\n - Month for application\n - Mobile Number\n - Payment mode\n - License plate number\n - IU number\n - Vehicle type\n");
+
+                //User provides the system with all the information required
+                string collatedInfo = Console.ReadLine();
+                string[] applicationInfo = collatedInfo.Split(',');
+
+                //Executing payment use case
+                Console.WriteLine("Redirecting you to payment...");
+                Console.WriteLine("Payment Successful!");
+
+                DateTime startMonth = Convert.ToDateTime(applicationInfo[1]);
+                DailySeasonPass dailySeasonPass = new DailySeasonPass("Daily", 1, startMonth);
+                dailySeasonPass.setPending();
+
+
+
+                Console.WriteLine("Daily Season Pass Object has been created");
+            }
+
+            else if (passType == 2)
+            {
+                MonthlySeasonPassCollection waitingList = MonthlySeasonPassCollection.getInstance();
+
+                if (waitingList.NumPassLeft == 0)
+                {
+                    Console.WriteLine("No Monthly passes left. Sign up for waiting list? [Y/N]");
+                    string signUp = Console.ReadLine().ToLower();
+
+                    if (signUp == "Y")
+                    {
+
+                        waitingList.registerObserver(this);
+
+                        Console.WriteLine("You are now in the waiting list for Monthly passes.");
+                    }
+                    else if (signUp == "N") 
+                    {
+                        Console.WriteLine("You have decided opt out.\nUse case ends.");
+                        
+                    }
+                    return false;
+
+                }
+                
+            }
+            return true;
+
+        }
+    }
 
 }
