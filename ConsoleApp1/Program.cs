@@ -23,7 +23,7 @@ namespace ConsoleApp1
             Subject PPData = new MonthlySeasonPassCollection();
             Applicants applicants = new Applicants(PPData);
             parkingPass.PassType = "";
-           
+            List<Applicants> applicantList= new List<Applicants>();
 
             while (true)
             {
@@ -47,7 +47,7 @@ namespace ConsoleApp1
                 }
                 else if (option == 3)
                 {
-                    // transfer
+                    
                     Console.WriteLine("Transfered! ");
                 }
                 else if (option == 4)
@@ -173,6 +173,38 @@ namespace ConsoleApp1
                         {
                             
                         }
+                    }
+                }
+
+
+            }
+
+            void transferPass()
+            {
+                /* 
+                    display season passes
+                    choose season pass
+                    display vehicles
+                    choose vehicle/add vehicle
+                    confirm trasnfer
+                    change season pass details
+                    display success
+                    */
+
+                Console.WriteLine("Enter your username registered to your season pass: ");
+                string un = Console.ReadLine();
+                Console.WriteLine("Enter your password: ");
+                string pw = Console.ReadLine();
+                foreach (Applicants applicant in applicantList)
+                {
+                    if (applicant.verifyUser(un, pw) == true)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Error authenticating user!");
+                        return;
                     }
                 }
 

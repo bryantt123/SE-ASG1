@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -34,6 +35,25 @@ namespace ConsoleApp1
 		public void Update()
 		{
 			Console.WriteLine("There are monthly passes available!");
+		}
+
+		public void addVehicle(string v, string l, int i)
+		{
+			Vehicle veh = new Vehicle(v, l, i);
+			vehicles.Add(veh);
+		}
+
+		public bool verifyUser(string un, string pw)
+		{
+			if (un == Username && pw == Password)
+			{
+				Console.WriteLine("Authentication success!");
+				return true;
+			}
+			else
+			{
+				return false;
+			}
 		}
 	}
 
