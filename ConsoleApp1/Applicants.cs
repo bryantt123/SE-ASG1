@@ -58,19 +58,35 @@ namespace ConsoleApp1
             if (passType == 1)
             {
 
-                Console.WriteLine("Please input the following information:\n - Name\n - Month for application\n - Mobile Number\n - Payment mode\n - License plate number\n - IU number\n - Vehicle type\n");
+                //Console.WriteLine("Please input the following information:\n - Name\n - Month for application\n - Mobile Number\n - Payment mode\n - License plate number\n - IU number\n - Vehicle type\n");
 
-                //User provides the system with all the information required
-                string collatedInfo = Console.ReadLine();
-                string[] applicationInfo = collatedInfo.Split(',');
+                ////User provides the system with all the information required
+                //string collatedInfo = Console.ReadLine();
+                //string[] applicationInfo = collatedInfo.Split(',');
 
-                //Executing payment use case
-                Console.WriteLine("Redirecting you to payment...");
-                Console.WriteLine("Payment Successful!");
+                ////Executing payment use case
+                //Console.WriteLine("Redirecting you to payment...");
+                //Console.WriteLine("Payment Successful!");
 
-                DateTime startMonth = Convert.ToDateTime(applicationInfo[1]);
-                DailySeasonPass dailySeasonPass = new DailySeasonPass("Daily", 1, startMonth);
-                dailySeasonPass.setPending();
+                //DateTime startMonth = Convert.ToDateTime(applicationInfo[1]);
+                //DailySeasonPass dailySeasonPass = new DailySeasonPass("Daily", 1, startMonth);
+                //dailySeasonPass.setPending();
+
+                Console.Write("Please enter your Name: ");
+
+                Console.Write("Please enter the Month for application: ");
+
+                Console.Write("Please enter your Mobile Number: ");
+                string mobileNo = Console.ReadLine();
+
+
+                Console.Write("Please enter your Payment mode: ");
+
+                Console.Write("License plate number");
+
+                Console.Write("IU number");
+
+                Console.Write("Vehicle Type");
 
 
 
