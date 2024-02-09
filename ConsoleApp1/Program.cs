@@ -13,6 +13,8 @@ namespace ConsoleApp1
         static void Main(string[] args)
         {
             ParkingPass parkingPass = new ParkingPass();
+            Subject PPData = new MonthlySeasonPassCollection();
+            Applicants applicants = new Applicants(PPData);
             parkingPass.PassType = "";
             while (true)
             {
@@ -50,7 +52,7 @@ namespace ConsoleApp1
                     parkingPass.PassType = Console.ReadLine();
                     if (parkingPass.PassType == "Daily" || parkingPass.PassType == "Monthly")
                     {
-                        parkingPass.TerminatePass(reason, parkingPass.PassType);
+                        parkingPass.TerminatePass(reason, parkingPass.PassType, applicants);
                         //Console.WriteLine("parkingPass.TerminatePass(reason) called");
                         //Console.WriteLine($"{parkingPass.PassType} season pass Terminated!");
                     }
