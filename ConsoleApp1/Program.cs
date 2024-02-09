@@ -13,7 +13,7 @@ namespace ConsoleApp1
         static void Main(string[] args)
         {
             ParkingPass parkingPass = new ParkingPass();
-            parkingPass.passType = "Monthly";
+            parkingPass.PassType = "";
             while (true)
             {
                 displayMenu();
@@ -47,12 +47,12 @@ namespace ConsoleApp1
 
                     string reason = Console.ReadLine();
                     Console.WriteLine("What type of season pass would you like to terminate? Daily / Monthly? (Case Sensitive, Please Copy Paste) :");
-                    parkingPass.passType = Console.ReadLine();
-                    if (parkingPass.passType == "Daily" || parkingPass.passType == "Monthly")
+                    parkingPass.PassType = Console.ReadLine();
+                    if (parkingPass.PassType == "Daily" || parkingPass.PassType == "Monthly")
                     {
-                        parkingPass.TerminatePass(reason, parkingPass.passType);
+                        parkingPass.TerminatePass(reason, parkingPass.PassType);
                         Console.WriteLine("parkingPass.TerminatePass(reason) called");
-                        Console.WriteLine($"{parkingPass.passType} season pass Terminated!");
+                        Console.WriteLine($"{parkingPass.PassType} season pass Terminated!");
                     }
                     else
                     {

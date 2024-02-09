@@ -15,6 +15,7 @@ namespace ConsoleApp1
 		public bool IsParked { get; set; }
 
         private string passType { get; set; }
+        public string PassType { get; set; }
 	
 		private double ChargeRate { get; set; }
 		private int NumPass { get; set; }
@@ -86,7 +87,7 @@ namespace ConsoleApp1
             // Check if the passType argument matches the Type of the ParkingPass
             if (this.passType == passType)
             {
-                IsActive = false;
+                state = terminatedState;
                 // If the season pass is "Daily"
                 if (passType == "Daily")
                 {
