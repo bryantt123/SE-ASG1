@@ -26,14 +26,6 @@ namespace ConsoleApp1
         {
 			this.ppData = pp;
 			ppData.registerObserver(this);
-			
-			ID = id;
-			Username = un;
-			Password = pw;
-			MobileNo = mn;
-			PaymentMode = pm;
-			Vehicle vehicle = new Vehicle(v, l, i);
-			vehicles.Add(vehicle);
 			// data
 			PpList = new List<ParkingPass>
 			{
