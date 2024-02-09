@@ -23,7 +23,7 @@ namespace ConsoleApp1
             Subject PPData = new MonthlySeasonPassCollection();
             Applicants applicants = new Applicants(PPData);
             parkingPass.PassType = "";
-            MonthlySeasonPassCollection monthlyPassCollection = new MonthlySeasonPassCollection();
+           
 
             while (true)
             {
@@ -149,9 +149,8 @@ namespace ConsoleApp1
                     Console.WriteLine("Payment Successful!");
 
                     DateTime startMonth = Convert.ToDateTime(applicationInfo[1]);
-                    DailySeasonPass dailySeasonPass = new DailySeasonPass("daily", 1, startMonth);
-
-                    
+                    DailySeasonPass dailySeasonPass = new DailySeasonPass("Daily", 1, startMonth);
+                    dailySeasonPass.setPending();
                     
 
                 }

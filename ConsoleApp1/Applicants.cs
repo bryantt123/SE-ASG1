@@ -17,11 +17,20 @@ namespace ConsoleApp1
 		private string PaymentMode { get; set; }
 		private List<Vehicle> vehicles { get; set; }
 
-		public Applicants(Subject pp)
+		public Applicants(Subject pp, string n, string id, string un, string pw, int mn, string pm, string v, string l, int i)
 		{
 			this.ppData = pp;
 			ppData.registerObserver(this);
+			Name = n;
+			ID = id;
+			Username = un;
+			Password = pw;
+			MobileNo = mn;
+			PaymentMode = pm;
+			Vehicle vehicle = new Vehicle(v, l, i);
+			vehicles.Add(vehicle);
 		}
+
 		public void Update()
 		{
 			Console.WriteLine("There are monthly passes available!");

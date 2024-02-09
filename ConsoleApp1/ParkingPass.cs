@@ -37,9 +37,9 @@ namespace ConsoleApp1
 		private PPState state;
 
 	
-        public void setState(PPState state)
+        public void setPending()
         {
-            this.state = state;
+            this.state = pendingApprovalState;
         }		
 
         public ParkingPass()
